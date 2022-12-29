@@ -1,8 +1,13 @@
 import React from 'react'
+import SectionPreview from '../../components/Section-Preview'
+import { TITLE,TABS } from '../../data/constants'
+
 
 const Home = () => {
   return (
-    <div>Home</div>
+    <>
+    <SectionPreview TABS={TABS.upcoming} TITLE={TITLE[0]}/>
+    </>
   )
 }
 
