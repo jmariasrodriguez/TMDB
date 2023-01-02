@@ -1,7 +1,6 @@
 export const TITLE = ["Upcoming","Movies","TV Series"]
 
-export const TABS =  {upcoming:[{label:"Movies", description:"Upcoming movies in theatres"},
-{label:"TV Shows", description:"Find the most newly tv shows"}],
+export const TABS =  {upcoming:[{label:"Movies", description:"Upcoming movies in theatres"}],
 
 movies:[{label:"In theaters", description:"What to watch in theaters"},
 {label:"Latest", description:"Find the most newly movies"},
