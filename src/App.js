@@ -6,7 +6,7 @@ import { Box } from '@mui/material';
 function App() {
   return (
     <>
-    <Box sx={{paddingRight:"200px", paddingLeft:"200px"}}>
+    <Box sx={{paddingRight:"200px", paddingLeft:"200px", bgcolor:"#22214F"}}>
     <Routes>
       <Route path='/' element={<Home/>}/>
     </Routes>
@@ -16,3 +16,9 @@ function App() {
 }
 
 export default App;
+
+
+//redux
+//crear un estado de upcoming[]
+//dispatch al home 
+//dispatch onchange en tabs section
