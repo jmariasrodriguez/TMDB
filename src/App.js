@@ -16,9 +16,3 @@ function App() {
 }
 
 export default App;
-
-
-//redux
-//crear un estado de upcoming[]
-//dispatch al home 
-//dispatch onchange en tabs section
