@@ -13,11 +13,11 @@ const Home = () => {
   const upcoming = useSelector((state) => state.upcoming);
   const movies = useSelector((state) => state.movies);
   const tvShows = useSelector((state) => state.tvShows);
-  const dispatch = useDispatch();
-
+  
   const [moviesGenres, setMoviesGenres] = useState([])
   const [tvGenres, setTvGenres] = useState([])
-
+  const dispatch = useDispatch();
+  
   useEffect(() => {
     axios
       .get(
@@ -47,7 +47,6 @@ const Home = () => {
       axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US").then((genres)=>{setTvGenres(genres.data.genres)})
   },[]);
   
-console.log("tv",tvShows)
   return (
     <>
       <SectionMainTitle MAIN_TITLE={MAIN_TITLE[0].homeView}/>
