@@ -9,6 +9,8 @@ function App() {
     <Box sx={{paddingRight:"200px", paddingLeft:"200px", bgcolor:"#22214F"}}>
     <Routes>
       <Route path='/' element={<Home/>}/>
+      <Route path='/tv/:id' element={<><h1>TV View</h1></>}/>
+      <Route path='/movie/:id' element={<><h1>Movie View</h1></>}/>
     </Routes>
     </Box>
     </>
