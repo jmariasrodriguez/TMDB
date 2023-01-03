@@ -2,6 +2,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import Home from './containers/Home';
 import { Box } from '@mui/material';
+import Footer from './components/Footer';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <Route path='/movie/:id' element={<><h1>Movie View</h1></>}/>
     </Routes>
     </Box>
+    <Footer/>
     </>
   );
 }
