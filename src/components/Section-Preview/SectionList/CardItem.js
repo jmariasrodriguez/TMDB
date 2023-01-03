@@ -4,11 +4,14 @@ import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
 import Rating from '@mui/material/Rating';
-import peli from "../../../assets/peli.jpg"
 import { Box } from '@mui/system';
 import StarIcon from '@mui/icons-material/Star';
+import { useNavigate } from 'react-router-dom';
+import { CardActionArea } from '@mui/material';
 
 export default function CardItem({movietv,index,GENRES}) {
+  const navigate= useNavigate() //navigate(`/${movietv.id}`)
+
   let value =movietv.vote_average/2;
    let genre= GENRES.filter((genero)=>{ return genero.id === movietv.genre_ids[0]})
   if(genre[0]){
@@ -28,10 +31,13 @@ export default function CardItem({movietv,index,GENRES}) {
   } else{
     name = movietv.name
   }
+
+  const handleClick = ()=>{ movietv.first_air_date? navigate(`/tv/${movietv.id}`): navigate(`/movie/${movietv.id}`)}
   
   return (
-   
-    <Card sx={{ height: '340px', width: 180, p:"0px"}}>
+
+    <Card value={movietv.id} sx={{ height: '340px', width: 180, p:"0px"}}>
+        
       <CardCover>
         <img
           srcSet={`https://www.themoviedb.org/t/p/original/${movietv.poster_path}`}
@@ -40,8 +46,9 @@ export default function CardItem({movietv,index,GENRES}) {
           
         />
       </CardCover>
+      <CardActionArea onClick={handleClick}>
  
-      <CardContent  sx={{ mt: "240px", maxHeight: 92,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
+      <CardContent value={movietv.id} sx={{ mt: "240px", maxHeight: 92,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
         <Box
       sx={{
         display: 'flex',
@@ -73,6 +80,7 @@ export default function CardItem({movietv,index,GENRES}) {
           {name}
         </Typography>
       </CardContent>
+      </CardActionArea>
     </Card>
   );
 }

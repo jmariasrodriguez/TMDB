@@ -3,9 +3,9 @@ import { Box } from "@mui/material";
 import SectionHeader from "./SectionHeader";
 import SectionList from "./SectionList";
 
-const SectionPreview = ({ TITLE, TABS, MOVIESTV, GENRES }) => {
+const SectionPreview = ({ PREVIEW_SECTION_TITLE, TABS, MOVIESTV, GENRES }) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", pt:"24px",pb:"24px" }}>
+    <Box sx={{ display: "flex", flexDirection: "column", pt:"24px",pb:"24px",bgcolor:"#27265B" }}>
       <Box
         sx={{
           display: "flex",
@@ -14,7 +14,7 @@ const SectionPreview = ({ TITLE, TABS, MOVIESTV, GENRES }) => {
           maxHeight: "90px",
         }}
       >
-        <SectionHeader TITLE={TITLE} TABS={TABS} />
+        <SectionHeader PREVIEW_SECTION_TITLE={PREVIEW_SECTION_TITLE} TABS={TABS} />
       </Box>
       <SectionList MOVIESTV={MOVIESTV} GENRES={GENRES}/>
     </Box>
