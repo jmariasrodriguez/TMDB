@@ -23,7 +23,7 @@ export default function TabsSection({ TABS, TITLE }) {
     setValue(newValue);
     let titleLabel = TITLE;
     if (titleLabel === "Movies") {titleLabel="movie"}
-    if (titleLabel === "Tv Series") {titleLabel="tv"}
+    if (titleLabel === "TV Series") {titleLabel="tv"}
 
     let tabTitle = event.target.outerText.toLowerCase().split(" ").join("_");
     if (tabTitle === "in_theaters") {tabTitle="now_playing"}
@@ -35,7 +35,6 @@ export default function TabsSection({ TABS, TITLE }) {
     if(titleLabel=== "tv") {
       axios.get(`https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`).then((tvArray)=>{dispatch(setTv(tvArray.data.results));})
     }
-    console.log("este es el estado de redux", titleLabel,tabTitle,movies)
   };
 
   return (
@@ -46,6 +45,7 @@ export default function TabsSection({ TABS, TITLE }) {
             {TABS?.map((tab, index) => {
               return (
                 <Tab
+                key={index}
                   label={tab.label}
                   value={index}
                   textColor="white"
@@ -57,7 +57,7 @@ export default function TabsSection({ TABS, TITLE }) {
         </Box>
         {TABS?.map((tab, index) => {
           return (
-            <TabPanel value={index} sx={{ color: "white" }}>
+            <TabPanel key={index} value={index} sx={{ color: "white" }}>
               {tab.description}
             </TabPanel>
           );

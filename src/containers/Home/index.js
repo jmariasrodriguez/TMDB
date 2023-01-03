@@ -14,9 +14,10 @@ const Home = () => {
   const tvShows = useSelector((state) => state.tvShows);
   const dispatch = useDispatch();
 
-  //const [upcoming, setUpcoming] = useState([])
+  const [moviesGenres, setMoviesGenres] = useState([])
+  const [tvGenres, setTvGenres] = useState([])
+
   useEffect(() => {
-    // axios.get("https://api.themoviedb.org/3/movie/upcoming?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1").then((upcomingMovies)=>{setUpcoming(upcomingMovies.data.results)})
     axios
       .get(
         "https://api.themoviedb.org/3/movie/upcoming?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1"
@@ -41,16 +42,16 @@ const Home = () => {
         dispatch(setTv(onTheAirTV.data.results));
       });
 
-      
+      axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US").then((genres)=>{setMoviesGenres(genres.data.genres)})
+      axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US").then((genres)=>{setTvGenres(genres.data.genres)})
   }, []);
   
-  // console.log("este es el estado de redux",upcoming)
-  // console.log("este es el estado de redux",movies)
-  // console.log("este es el estado de redux",tvShows)
 
   return (
     <>
-      <SectionPreview TABS={TABS.upcoming} TITLE={TITLE[0]} />
+      <SectionPreview TABS={TABS.upcoming} TITLE={TITLE[0]} MOVIESTV={upcoming} GENRES={moviesGenres} />
+      <SectionPreview TABS={TABS.movies} TITLE={TITLE[1]} MOVIESTV={movies} GENRES={moviesGenres} />
+      <SectionPreview TABS={TABS.tvSeries} TITLE={TITLE[2]} MOVIESTV={tvShows} GENRES={tvGenres} />
     </>
   );
 };
