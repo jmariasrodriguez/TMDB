@@ -32,7 +32,7 @@ export default function CardItem({movietv,index,GENRES}) {
     name = movietv.name
   }
 
-  const handleClick = ()=>{ movietv.first_air_date? navigate(`/tv/${movietv.id}`): navigate(`/movie/${movietv.id}`)}
+  const handleClick = ()=>{ movietv.first_air_date? navigate(`/tv/${movietv.id}`): navigate(`/movies/${movietv.id}`)}
   
   return (
 
@@ -48,7 +48,7 @@ export default function CardItem({movietv,index,GENRES}) {
       </CardCover>
       <CardActionArea onClick={handleClick}>
  
-      <CardContent value={movietv.id} sx={{ mt: "240px", maxHeight: 92,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
+      <CardContent value={movietv.id} sx={{ mt: "230px", minHeight: 90,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
         <Box
       sx={{
         display: 'flex',
