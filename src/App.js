@@ -4,12 +4,14 @@ import Home from './containers/Home';
 import { Box } from '@mui/material';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
+import { NAVBAR_TITLES } from './data/constants';
 
 function App() {
   return (
     <>
+    <Box>
+      <Navbar navbarTitles={NAVBAR_TITLES}/>
     <Box sx={{paddingRight:"200px", paddingLeft:"200px", bgcolor:"#22214F"}}>
-      <Navbar/>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/tv' element={<><h1>TV View</h1></>}/>
@@ -21,6 +23,7 @@ function App() {
     </Routes>
     </Box>
     <Footer/>
+    </Box>
     </>
   );
 }

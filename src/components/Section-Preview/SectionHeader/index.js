@@ -2,11 +2,11 @@ import React from 'react'
 import TabsSection from './TabsSection'
 import Title from './Title'
 
-const SectionHeader = ({PREVIEW_SECTION_TITLE, TABS}) => {
+const SectionHeader = ({previewSectionTitle, tabs}) => {
   return (
    <>
-    <Title PREVIEW_SECTION_TITLE={PREVIEW_SECTION_TITLE} />
-    <TabsSection PREVIEW_SECTION_TITLE={PREVIEW_SECTION_TITLE} TABS={TABS}/>
+    <Title previewSectionTitle={previewSectionTitle} />
+    <TabsSection previewSectionTitle={previewSectionTitle} tabs={tabs}/>
    </>
   )
 }

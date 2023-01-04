@@ -1,9 +1,6 @@
+export const NAVBAR_TITLES=['Movies', 'TV Series']
+
 export const MAIN_TITLE= [{homeView:{main:"Good to see you!",secondary:"Millions of movies and TV series to discover"}}]
-
-
-
-
-
 
 export const PREVIEW_SECTION_TITLE = ["Upcoming","Movies","TV Series"]
 

@@ -19,7 +19,6 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 
 
-
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
@@ -51,10 +50,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 
-
-const pages = ['Movies', 'TV Series'];
-
-function Navbar() {
+function Navbar({navbarTitles}) {
   const navigate = useNavigate()
 
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -91,7 +87,7 @@ function Navbar() {
   }
 
   return (
-    <AppBar position="fixed" sx={{backgroundColor:"#273088"}} >
+    <AppBar position="relative" sx={{backgroundColor:"#273088"}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters >
           <LocalMoviesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
@@ -142,7 +138,7 @@ function Navbar() {
                 display: { xs: 'block', md: 'none' },
               }}
             >
-              {pages.map((page) => (
+              {navbarTitles.map((page) => (
                 <MenuItem key={page} onClick={handleOpenMenuPage}>
                   <Typography textAlign="center">{page}</Typography>
                 </MenuItem>
@@ -169,7 +165,7 @@ function Navbar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-            {pages.map((page) => (
+            {navbarTitles.map((page) => (
               <Button
                 key={page}
                 onClick={handleOpenMenuPage}
