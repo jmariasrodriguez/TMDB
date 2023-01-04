@@ -2,7 +2,7 @@ import React from "react";
 import { Grid } from "@mui/material";
 import CardItem from "./CardItem"
 
-const SectionList = ({MOVIESTV, GENRES}) => {
+const SectionList = ({shows, genres}) => {
   return (
     <>
     <Grid
@@ -14,10 +14,10 @@ const SectionList = ({MOVIESTV, GENRES}) => {
         wrap="nowrap"
         overflow= "auto"
       >
-        {MOVIESTV?.map((movietv, index)=>{
+        {shows?.map((show, index)=>{
           return (
         <Grid item > 
-        <CardItem key={index} movietv={movietv} index={index} GENRES={GENRES} />
+        <CardItem key={index} show={show} index={index} genres={genres} />
         </Grid>
           )
         })}

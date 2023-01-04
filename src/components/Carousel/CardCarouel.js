@@ -3,16 +3,11 @@ import Card from '@mui/joy/Card';
 import CardCover from '@mui/joy/CardCover';
 import CardContent from '@mui/joy/CardContent';
 import Typography from '@mui/joy/Typography';
-import Rating from '@mui/material/Rating';
-import { Box } from '@mui/system';
-import StarIcon from '@mui/icons-material/Star';
 import { useNavigate } from 'react-router-dom';
 import { CardActionArea } from '@mui/material';
 
-export default function CardItem({show,genres}) {
+export default function CardCarouel({show,genres}) {
   const navigate= useNavigate()
-
-  let value =show.vote_average/2;
    let genre= genres.filter((genero)=>{ return genero.id === show.genre_ids[0]})
   if(genre[0]){
   genre= genre[0].name
@@ -36,48 +31,39 @@ export default function CardItem({show,genres}) {
   
   return (
 
-    <Card value={show.id} sx={{ height: '340px', width: 180, p:"0px"}}>
+    <Card value={show.id}  sx={{ height: '340px', width: 1, p:"0px"}}>
         
-      <CardCover>
+      <CardCover >
         <img
-          srcSet={`https://www.themoviedb.org/t/p/original/${show.poster_path}`}
+          srcSet={`https://www.themoviedb.org/t/p/original/${show.backdrop_path}`}
           loading="lazy"
-          alt={name}     
+          alt={name}
         />
       </CardCover>
       <CardActionArea onClick={handleClick}>
  
-      <CardContent value={show.id} sx={{ mt: "230px", minHeight: 90,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
-        <Box
-      sx={{
-        display: 'flex',
-        alignItems: 'center',
-        pt:"4px",
-        pb:"4px"
-      }}
-    >
-      <Rating
-        name="text-feedback"
-        value={value}
-        readOnly
-        precision={0.5}
-        size="small" 
-        emptyIcon={<StarIcon style={{ opacity: 0.3, color:"#fff" }} fontSize="inherit" />}
-      />
-    </Box>
+      <CardContent value={show.id} sx={{ mt: "230px", minHeight: 105,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
+        <Typography fontSize="lg" fontWeight="bold" textColor="#fff" m={0.5} >
+          {name}
+        </Typography>
 
         <Typography
           textColor="#fff"
-          fontSize="sm" 
-          
-          sx={{  pt:"4px"}}
+          fontSize="lg" 
+          fontWeight="bold"
+           m={0.5}
         >
-          {year},{genre}
+          {year}, { genre}
         </Typography>
 
-        <Typography level="h6" fontSize="md" textColor="#fff" mt={1} >
-          {name}
+        <Typography
+          textColor="#fff"
+          fontSize="md" 
+          m={1}
+        >
+          {show.overview}
         </Typography>
+
       </CardContent>
       </CardActionArea>
     </Card>
