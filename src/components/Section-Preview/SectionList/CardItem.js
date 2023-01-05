@@ -36,24 +36,23 @@ export default function CardItem({show,genres}) {
   
   return (
 
-    <Card value={show.id} sx={{ height: '340px', width: 180, p:"0px"}}>
+    <Card value={show.id} sx={{ height: '340px', width:"180px",p:"0px" ,mt:"30px"}}>
         
       <CardCover>
         <img
           srcSet={`https://www.themoviedb.org/t/p/original/${show.poster_path}`}
-          loading="lazy"
           alt={name}     
         />
       </CardCover>
       <CardActionArea onClick={handleClick}>
  
-      <CardContent value={show.id} sx={{ mt: "230px", minHeight: 90,  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
+      <CardContent value={show.id} sx={{ mt: "230px", minHeight: "90px",  width: 1,bgcolor: 'rgba(0,0,0,0.7)'  }}>
         <Box
       sx={{
         display: 'flex',
         alignItems: 'center',
         pt:"4px",
-        pb:"4px"
+        pb:"4px",
       }}
     >
       <Rating
@@ -69,7 +68,6 @@ export default function CardItem({show,genres}) {
         <Typography
           textColor="#fff"
           fontSize="sm" 
-          
           sx={{  pt:"4px"}}
         >
           {year},{genre}

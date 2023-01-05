@@ -15,8 +15,8 @@ const Footer = () => {
     <Grid container display="flex" direction="row"  justifyContent="flex-start"  alignItems="center"  backgroundColor="#273088" sx={{minHeight:"50px"}} >
 
         <Grid container direction="row" display="flex"  justifyContent="center"  alignItems="center"  sx={{width:1/2, height: '100%'}}>
-        <Grid item sx={{ml:"16px",mr:"16px", maxWidth:"13%"}}>
-    <SvgIcon component={tmdbIcon} inheritViewBox  style={{width:"100%"}}/>
+        <Grid item sx={{ml:"16px",mr:"16px", maxWidth:"15%"}}>
+    <SvgIcon component={tmdbIcon} inheritViewBox  style={{width:"75px", height:"75px"}}/>
         </Grid>
         <Grid item>
         <Typography variant="body1" fontWeight="bold" color="white" >This product uses the TMDB API but is not endorsed or certify by TMDB</Typography>

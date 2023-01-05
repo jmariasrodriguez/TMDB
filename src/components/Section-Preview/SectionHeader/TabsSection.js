@@ -51,7 +51,7 @@ export default function TabsSection({ tabs, previewSectionTitle }) {
         </Box>
         {tabs?.map((tab, index) => {
           return (
-            <TabPanel key={index} value={index} sx={{ color: "white" }}>
+            <TabPanel key={index} value={index} sx={{ color: "white"}}>
               {tab.description}
             </TabPanel>
           );

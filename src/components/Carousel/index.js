@@ -6,7 +6,7 @@ import CardCarouel from './CardCarouel'
 const SectionCarousel = ({carouselShows, genres}) => {
       
     return (
-        <Carousel sx={{ mb: "2.5%", height: "370px" , paddingRight:"200px", paddingLeft:"200px"}}>
+        <Carousel sx={{ margin:"auto", mb: "1.5%", mt:"1%", height: "370px", maxWidth: "1200px"}}>
             {
                 carouselShows.map( (show, index) => <CardCarouel key={index} show={show} genres={genres} /> )
             }
