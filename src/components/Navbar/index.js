@@ -59,7 +59,7 @@ function Navbar({navbarTitles}) {
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
-  //Ver
+  
   const handleOpenUserMenu = () => {
     navigate(`/userFavorites`)
   };
@@ -90,7 +90,7 @@ function Navbar({navbarTitles}) {
     <AppBar position="relative" sx={{backgroundColor:"#273088"}} >
       <Container maxWidth="xl">
         <Toolbar disableGutters >
-          <LocalMoviesIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
+          <LocalMoviesIcon sx={{  fontSize: '2.125rem',display: { xs: 'none', md: 'flex' }, mr: 1 }} />
           <Typography
             variant="h6"
             noWrap
@@ -104,6 +104,7 @@ function Navbar({navbarTitles}) {
               letterSpacing: '.3rem',
               color: 'inherit',
               textDecoration: 'none',
+              fontSize: 24
             }}
           >
             TMDB
@@ -140,7 +141,7 @@ function Navbar({navbarTitles}) {
             >
               {navbarTitles.map((page) => (
                 <MenuItem key={page} onClick={handleOpenMenuPage}>
-                  <Typography textAlign="center">{page}</Typography>
+                  <Typography textAlign="center" sx={{fontSize: 16}}>{page}</Typography>
                 </MenuItem>
               ))}
             </Menu>

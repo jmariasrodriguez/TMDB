@@ -11,6 +11,7 @@ import SectionMainTitle from "../../components/Section-MainTitle";
 import SectionCarousel from "../../components/Carousel";
 
 const Home = () => {
+
   const upcoming = useSelector((state) => state.upcoming);
   const movies = useSelector((state) => state.movies);
   const tvShows = useSelector((state) => state.tvShows);
@@ -18,33 +19,34 @@ const Home = () => {
   const [carouselShows, setCarouselShows] = useState([])
   const [moviesGenres, setMoviesGenres] = useState([])
   const [tvGenres, setTvGenres] = useState([])
-  const dispatch = useDispatch();
   
+  const dispatch = useDispatch();
   useEffect(() => {
+    
     axios
       .get(
-        "https://api.themoviedb.org/3/movie/upcoming?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1"
+        `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&page=1`
       )
       .then((upcomingMovies) => {
         dispatch(setUpcoming(upcomingMovies.data.results));
       });
       axios
       .get(
-        "https://api.themoviedb.org/3/movie/now_playing?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1"
+        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&page=1`
       )
       .then((inTheaterMovies) => {
         dispatch(setMovies(inTheaterMovies.data.results));
       });
       axios
       .get(
-        "https://api.themoviedb.org/3/tv/on_the_air?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1"
+        `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&page=1`
       )
       .then((onTheAirTV) => {
         dispatch(setTv(onTheAirTV.data.results));
       });
-      axios.get("https://api.themoviedb.org/3/genre/movie/list?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US").then((genres)=>{setMoviesGenres(genres.data.genres)})
-      axios.get("https://api.themoviedb.org/3/genre/tv/list?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US").then((genres)=>{setTvGenres(genres.data.genres)})
-      axios.get("https://api.themoviedb.org/3/discover/movie?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad").then((moviesArray)=>{setCarouselShows(moviesArray.data.results)})
+      axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US`).then((genres)=>{setMoviesGenres(genres.data.genres)})
+      axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US`).then((genres)=>{setTvGenres(genres.data.genres)})
+      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}`).then((moviesArray)=>{setCarouselShows(moviesArray.data.results)})
   },[]);
   
   return (
