@@ -9,9 +9,11 @@ import { NAVBAR_TITLES } from './data/constants';
 function App() {
   return (
     <>
-    <Box>
+    <Box container
+  direction="column"
+  justifyContent="center"
+  alignItems="center"sx={{bgcolor:"#22214F"}}>
       <Navbar navbarTitles={NAVBAR_TITLES}/>
-    <Box sx={{paddingRight:"200px", paddingLeft:"200px", bgcolor:"#22214F"}}>
     <Routes>
       <Route path='/' element={<Home/>}/>
       <Route path='/tv' element={<><h1>TV View</h1></>}/>
@@ -21,7 +23,6 @@ function App() {
       <Route path='/search/:searchValue' element={<h1>Search View</h1>}/>
       <Route path='/userFavorites' element={<><h1>User Favs View</h1></>}/>
     </Routes>
-    </Box>
     <Footer/>
     </Box>
     </>
