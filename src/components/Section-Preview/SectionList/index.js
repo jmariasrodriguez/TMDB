@@ -26,7 +26,7 @@ const SectionList = ({shows, genres}) => {
     },
     "&::-webkit-scrollbar-thumb": {
       background: "#007AFF",
-      borderRadius: "20px", 
+      borderRadius: "20px",  
     },
     "&::-webkit-scrollbar-thumb:hover": {
       background: "#00b3ff",
@@ -35,8 +35,8 @@ const SectionList = ({shows, genres}) => {
       >
         {shows?.map((show, index)=>{
           return (
-        <Grid item > 
-        <CardItem key={index} show={show} index={index} genres={genres} />
+        <Grid item  > 
+        <CardItem  key={index} show={show} index={index} genres={genres} />
         </Grid>
           )
         })}

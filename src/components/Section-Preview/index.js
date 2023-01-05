@@ -5,7 +5,8 @@ import SectionList from "./SectionList";
 
 const SectionPreview = ({ previewSectionTitle, tabs, shows, genres }) => {
   return (
-    <Box sx={{ display: "flex", flexDirection: "column", mt:"36px", mb:"36px", pt:"16px",pb:"16px",bgcolor:"#27265B", paddingRight:"200px", paddingLeft:"200px" }}>
+    <Box sx={{bgcolor:"#27265B"}}>
+    <Box sx={{ display: "flex", flexDirection: "column",margin:"auto", maxWidth:"1200px", mt:"36px", mb:"36px", pt:"16px",pb:"16px" }}>
       <Box
         sx={{
           display: "flex",
@@ -17,6 +18,7 @@ const SectionPreview = ({ previewSectionTitle, tabs, shows, genres }) => {
         <SectionHeader previewSectionTitle={previewSectionTitle} tabs={tabs} />
       </Box>
       <SectionList shows={shows} genres={genres}/>
+    </Box>
     </Box>
   );
 };
