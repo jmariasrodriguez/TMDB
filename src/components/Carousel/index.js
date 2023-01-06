@@ -1,16 +1,16 @@
 import React from 'react'
-import Carousel from 'react-material-ui-carousel'
 import CardCarouel from './CardCarouel'
+import { CarouselContainer } from './styleCarousel'
 
 
 const SectionCarousel = ({carouselShows, genres}) => {
       
     return (
-        <Carousel sx={{ margin:"auto", mb: "1.5%", mt:"1%", height: "370px", maxWidth: "1200px"}}>
+        <CarouselContainer >
             {
                 carouselShows.map( (show, index) => <CardCarouel key={index} show={show} genres={genres} /> )
             }
-        </Carousel>
+        </CarouselContainer>
     )
 }
 
