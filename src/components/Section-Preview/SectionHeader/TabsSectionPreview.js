@@ -8,50 +8,68 @@ import { setMovies } from "../../../context/movies";
 import { setTv } from "../../../context/tv";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+import { ContainerTabsTitles } from "../styleSectionPreview";
 
-export default function TabsSection({ tabs, previewSectionTitle }) {
+export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
   const [value, setValue] = useState(0);
   const dispatch = useDispatch();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
     let titleLabel = previewSectionTitle;
-    if (titleLabel === "Movies") {titleLabel="movie"}
-    if (titleLabel === "TV Series") {titleLabel="tv"}
+    if (titleLabel === "Movies") {
+      titleLabel = "movie";
+    }
+    if (titleLabel === "TV Series") {
+      titleLabel = "tv";
+    }
 
     let tabTitle = event.target.outerText.toLowerCase().split(" ").join("_");
-    if (tabTitle === "in_theaters") {tabTitle="now_playing"}
-
-    if(titleLabel=== "movie") {
-      axios.get(`https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`).then((moviesArray)=>{dispatch(setMovies(moviesArray.data.results));})
+    if (tabTitle === "in_theaters") {
+      tabTitle = "now_playing";
     }
 
-    if(titleLabel=== "tv") {
-      axios.get(`https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`).then((tvArray)=>{dispatch(setTv(tvArray.data.results));})
+    if (titleLabel === "movie") {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`
+        )
+        .then((moviesArray) => {
+          dispatch(setMovies(moviesArray.data.results));
+        });
+    }
+
+    if (titleLabel === "tv") {
+      axios
+        .get(
+          `https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`
+        )
+        .then((tvArray) => {
+          dispatch(setTv(tvArray.data.results));
+        });
     }
   };
-  
+
   return (
-    <Box sx={{ width: "100%", typography: "body1" }}>
+    <Box>
       <TabContext value={value}>
-        <Box sx={{ height: "30px", borderBottom: 1, borderColor: "divider" }}>
+        <ContainerTabsTitles>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             {tabs?.map((tab, index) => {
               return (
                 <Tab
-                key={index}
+                  key={index}
                   label={tab.label}
                   value={index}
-                  textColor="white"
-                  sx={{ color: "white" }}
+                  sx={{ color: "white", typography: "body1" }}
                 />
               );
             })}
           </TabList>
-        </Box>
+        </ContainerTabsTitles>
         {tabs?.map((tab, index) => {
           return (
-            <TabPanel key={index} value={index} sx={{ color: "white"}}>
+            <TabPanel key={index} value={index} sx={{ color: "white" }}>
               {tab.description}
             </TabPanel>
           );

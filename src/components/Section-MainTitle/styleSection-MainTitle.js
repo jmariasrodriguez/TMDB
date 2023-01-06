@@ -1,12 +1,12 @@
 import { Box } from "@mui/system";
-import styled from "styled-components";
+import { styled } from "@mui/system";
 
-export const BoxMainTitle = styled(Box)(({theme})=>({
-    margin:"auto", 
-    maxWidth:"1200px", 
-    textAlign:"center"
-    // [theme.breakpoints.down("xs")]:{
-    //     paddingRight:"20px", 
-    //     paddingLeft:"20px",
-    // }
-}))
+export const BoxMainTitle = styled(Box)(({ theme }) => ({
+  margin: "auto",
+  maxWidth: "1200px",
+  textAlign: "center",
+}));
+
+export const BoxContainerMainTitle = styled(Box)(({ theme }) => ({
+  backgroundColor: "#27265B",
+}));
