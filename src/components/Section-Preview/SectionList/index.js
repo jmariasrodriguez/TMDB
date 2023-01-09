@@ -3,11 +3,11 @@ import { Grid } from "@mui/material";
 import CardItem from "./CardItem";
 import { ContainerSectionList } from "../styleSectionPreview";
 
-const SectionList = ({ shows, genres }) => {
+const SectionList = ({ data, genres }) => {
   return (
     <>
       <ContainerSectionList container spacing={3}>
-        {shows?.map((show, index) => {
+        {data?.map((show, index) => {
           return (
             <Grid item>
               <CardItem key={index} show={show} index={index} genres={genres} />

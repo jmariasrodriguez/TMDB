@@ -4,11 +4,16 @@ import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
 import TabPanel from "@mui/lab/TabPanel";
-import { setMovies } from "../../../context/movies";
-import { setTv } from "../../../context/tv";
+import {
+  onSetMovies,
+  setMoviesFail,
+  setMoviesSuccess,
+} from "../../../state/movies";
+import { onSetTv, setTvFail, setTvSuccess } from "../../../state/tv";
 import { useDispatch } from "react-redux";
 import axios from "axios";
 import { ContainerTabsTitles } from "../styleSectionPreview";
+import { API_URL } from "../../../data/constants";
 
 export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
   const [value, setValue] = useState(0);
@@ -30,22 +35,30 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
     }
 
     if (titleLabel === "movie") {
+      dispatch(onSetMovies());
       axios
         .get(
-          `https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`
+          `${API_URL.beginningPath}${titleLabel}/${tabTitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
         )
         .then((moviesArray) => {
-          dispatch(setMovies(moviesArray.data.results));
+          dispatch(setMoviesSuccess(moviesArray.data.results));
+        })
+        .catch((err) => {
+          setMoviesFail(err.message || "Sorry, something went wrong.");
         });
     }
 
     if (titleLabel === "tv") {
+      dispatch(onSetTv());
       axios
         .get(
-          `https://api.themoviedb.org/3/${titleLabel}/${tabTitle}?api_key=48f5be1a93ce7b3db1bd4f6b142d09ad&language=en-US&page=1`
+          `${API_URL.beginningPath}${titleLabel}/${tabTitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
         )
         .then((tvArray) => {
-          dispatch(setTv(tvArray.data.results));
+          dispatch(setTvSuccess(tvArray.data.results));
+        })
+        .catch((err) => {
+          setTvFail(err.message || "Sorry, something went wrong.");
         });
     }
   };
