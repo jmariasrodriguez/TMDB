@@ -29,7 +29,7 @@ export default function CardItem({ show, genres }) {
           alt={movieTv.name}
         />
       </CardCover>
-      <CardActionArea onClick={handleClick}>
+      <CardActionArea sx={{position:"relative", height:"100%"}} onClick={handleClick}>
         <ContentCard value={show.id}>
           <BoxRaiting>
             <Rating

@@ -68,9 +68,11 @@ export const ContainerCard = styled(Card)(({ theme }) => ({
 }));
 
 export const ContentCard = styled(CardContent)(({ theme }) => ({
-  marginTop: "230px",
-  minHeight: "90px",
-  width: "100",
+  position:"absolute",
+  width:"100%",
+  bottom:"0",
+  // marginTop: "230px",
+  // minHeight: "90px",
   backgroundColor: "rgba(0,0,0,0.7)",
 }));
 

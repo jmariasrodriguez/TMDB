@@ -7,8 +7,9 @@ import {
   ContainerSectionPreview2,
   ContainerTitleTabs,
 } from "./styleSectionPreview";
+import { Alert, Box, CircularProgress } from "@mui/material";
 
-const SectionPreview = ({ previewSectionTitle, tabs, shows, genres }) => {
+const SectionPreview = ({ previewSectionTitle, tabs, data, loading, error, genres }) => {
   return (
     <ContainerSectionPreview>
       <ContainerSectionPreview2>
@@ -19,8 +20,9 @@ const SectionPreview = ({ previewSectionTitle, tabs, shows, genres }) => {
             tabs={tabs}
           />
         </ContainerTitleTabs>
-
-        <SectionList shows={shows} genres={genres} />
+        {loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
+        {error && <Alert variant="filled" severity="error">{error}</Alert>}
+        <SectionList data={data} genres={genres} />
       </ContainerSectionPreview2>
     </ContainerSectionPreview>
   );

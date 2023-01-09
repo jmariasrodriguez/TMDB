@@ -1,63 +1,111 @@
 import React from "react";
 import SectionPreview from "../../components/Section-Preview";
-import { TABS, MAIN_TITLE, PREVIEW_SECTION_TITLE } from "../../data/constants";
+import { TABS, MAIN_TITLE, PREVIEW_SECTION_TITLE, API_URL } from "../../data/constants";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setUpcoming } from "../../context/upcoming";
-import { setMovies } from "../../context/movies";
-import { setTv } from "../../context/tv";
+import {
+  onSetUpcoming,
+  setUpcomingFail,
+  setUpcomingSuccess,
+} from "../../state/upcoming";
+import {
+  onSetMovies,
+  setMoviesFail,
+  setMoviesSuccess,
+} from "../../state/movies";
+import { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
 import SectionMainTitle from "../../components/Section-MainTitle";
 import SectionCarousel from "../../components/Carousel";
+import { TV_SERIES, UPCOMING, MOVIES } from "../../data/constants";
 
 const Home = () => {
+  const sectionData = {
+    [UPCOMING]: useSelector((state) => state[UPCOMING]),
+    [MOVIES]: useSelector((state) => state[MOVIES]),
+    [TV_SERIES]: useSelector((state) => state[TV_SERIES]),
+  };
 
-  const upcoming = useSelector((state) => state.upcoming);
-  const movies = useSelector((state) => state.movies);
-  const tvShows = useSelector((state) => state.tvShows);
-  
-  const [carouselShows, setCarouselShows] = useState([])
-  const [moviesGenres, setMoviesGenres] = useState([])
-  const [tvGenres, setTvGenres] = useState([])
-  
+  const [carouselShows, setCarouselShows] = useState([]);
+  const [moviesGenres, setMoviesGenres] = useState([]);
+  const [tvGenres, setTvGenres] = useState([]);
+
   const dispatch = useDispatch();
   useEffect(() => {
-    
+    dispatch(onSetUpcoming());
+    dispatch(onSetTv());
+    dispatch(onSetMovies());
     axios
       .get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&page=1`
+        `${API_URL.beginningPath}movie/upcoming?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
       )
       .then((upcomingMovies) => {
-        dispatch(setUpcoming(upcomingMovies.data.results));
+        dispatch(setUpcomingSuccess(upcomingMovies.data.results));
+      })
+      .catch((err) => {
+        dispatch(setUpcomingFail(err.message || "Sorry, something went wrong."));
       });
-      axios
+    axios
       .get(
-        `https://api.themoviedb.org/3/movie/now_playing?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&page=1`
+        `${API_URL.beginningPath}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
       )
-      .then((inTheaterMovies) => {
-        dispatch(setMovies(inTheaterMovies.data.results));
+      .then((Movies) => {
+        dispatch(setMoviesSuccess(Movies.data.results));
+      })
+      .catch((err) => {
+        dispatch(setMoviesFail(err.message || "Sorry, something went wrong."));
       });
-      axios
+    axios
       .get(
-        `https://api.themoviedb.org/3/tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US&page=1`
+        `${API_URL.beginningPath}tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
       )
-      .then((onTheAirTV) => {
-        dispatch(setTv(onTheAirTV.data.results));
+      .then((TV) => {
+        dispatch(setTvSuccess(TV.data.results));
+      })
+      .catch((err) => {
+        dispatch(setTvFail(err.message || "Sorry, something went wrong."));
       });
-      axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US`).then((genres)=>{setMoviesGenres(genres.data.genres)})
-      axios.get(`https://api.themoviedb.org/3/genre/tv/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US`).then((genres)=>{setTvGenres(genres.data.genres)})
-      axios.get(`https://api.themoviedb.org/3/discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}`).then((moviesArray)=>{setCarouselShows(moviesArray.data.results)})
-  },[]);
-  
+    axios
+      .get(
+        `${API_URL.beginningPath}genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
+      )
+      .then((genres) => {
+        setMoviesGenres(genres.data.genres);
+      });
+    axios
+      .get(
+        `${API_URL.beginningPath}genre/tv/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
+      )
+      .then((genres) => {
+        setTvGenres(genres.data.genres);
+      });
+    axios
+      .get(
+        `${API_URL.beginningPath}discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}`
+      )
+      .then((moviesArray) => {
+        setCarouselShows(moviesArray.data.results);
+      });
+  }, []);
+
+  const getGenre = (section)=> section === "movies"? moviesGenres : tvGenres
+  console.log("data",sectionData[UPCOMING])
+
   return (
     <>
-      <SectionCarousel carouselShows={carouselShows} genres={moviesGenres}/>
-      <SectionMainTitle mainTitle={MAIN_TITLE[0].homeView}/>
-      <SectionPreview tabs={TABS.upcoming} previewSectionTitle={PREVIEW_SECTION_TITLE[0]} shows={upcoming} genres={moviesGenres} />
-      <SectionPreview tabs={TABS.movies} previewSectionTitle={PREVIEW_SECTION_TITLE[1]} shows={movies} genres={moviesGenres} />
-      <SectionPreview tabs={TABS.tvSeries} previewSectionTitle={PREVIEW_SECTION_TITLE[2]} shows={tvShows} genres={tvGenres} />
+      <SectionCarousel carouselShows={carouselShows} genres={moviesGenres} />
+      <SectionMainTitle mainTitle={MAIN_TITLE.homeView} />
+      {Object.keys(PREVIEW_SECTION_TITLE).map((section)=>
+          <SectionPreview
+          tabs={TABS[section]}
+          previewSectionTitle={PREVIEW_SECTION_TITLE[section]}
+          genres={getGenre(section)}
+          {...sectionData[section]}
+        />
+      )}
     </>
   );
 };
 
 export default Home;
+
