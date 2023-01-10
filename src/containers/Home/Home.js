@@ -25,7 +25,7 @@ const Home = () => {
     [MOVIES]: useSelector((state) => state[MOVIES]),
     [TV_SERIES]: useSelector((state) => state[TV_SERIES]),
   };
-
+  
   const [carouselShows, setCarouselShows] = useState([]);
   const [moviesGenres, setMoviesGenres] = useState([]);
   const [tvGenres, setTvGenres] = useState([]);
@@ -89,7 +89,6 @@ const Home = () => {
   }, []);
 
   const getGenre = (section)=> section === "movies"? moviesGenres : tvGenres
-  console.log("data",sectionData[UPCOMING])
 
   return (
     <>

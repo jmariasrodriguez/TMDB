@@ -15,6 +15,7 @@ const SectionPreview = ({ previewSectionTitle, tabs, data, loading, error, genre
       <ContainerSectionPreview2>
         <ContainerTitleTabs>
           <TitleSectionPreview previewSectionTitle={previewSectionTitle} />
+          
           <TabsSectionPreview
             previewSectionTitle={previewSectionTitle}
             tabs={tabs}

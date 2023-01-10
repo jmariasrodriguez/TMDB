@@ -59,6 +59,29 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
   },
 }));
 
+//OnePage-Section-Preview-SectionList-index or cards container
+export const ContainerSectionListOnePage = styled(Grid)(({ theme }) => ({
+  flexDirection: "row",
+  justifyContent: "flex-start",
+  alignItems: "flex-start",
+
+  "&::-webkit-scrollbar": {
+    width: "20px",
+    height: "8px",
+  },
+  "&::-webkit-scrollbar-track": {
+    boxShadow: "inset 0 0 5px rgb(255, 251, 251)",
+    borderRadius: "20px",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    background: "#007AFF",
+    borderRadius: "20px",
+  },
+  "&::-webkit-scrollbar-thumb:hover": {
+    background: "#00b3ff",
+  },
+}));
+
 //Card
 export const ContainerCard = styled(Card)(({ theme }) => ({
   height: "340px",
