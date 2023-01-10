@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import { NAVBAR_TITLES } from './data/constants';
 import Movies from './containers/Movies/Movies';
+import Tv from './containers/Tv/Tv';
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
       <Navbar navbarTitles={NAVBAR_TITLES}/>
     <Routes>
       <Route path='/' element={<Home/>}/>
-      <Route path='/tv' element={<h1>TV</h1>}/>
+      <Route path='/tv' element={<Tv/>}/>
       <Route path='/movies' element={<Movies/>}/>
       <Route path='/tv/:id' element={<><h1>TV Single View </h1></>}/>
       <Route path='/movies/:id' element={<><h1>Movie Single View</h1></>}/>
