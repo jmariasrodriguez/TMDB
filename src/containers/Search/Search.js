@@ -1,13 +1,16 @@
 import axios from 'axios';
-import React, {  useState,useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation, useParams } from 'react-router-dom'
 import SectionMainTitle from '../../components/Section-MainTitle';
 import SectionPreview from '../../components/Section-Preview';
 import { API_URL, MAIN_TITLE, MOVIES, PREVIEW_SECTION_TITLE, TABS } from '../../data/constants';
 import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies';
 
-const Movies = () => {
-    const sectionData = {
+const SearchView = () => {
+    let searchValue = useLocation().search.split("=")[1]
+
+ const sectionData = {
         [MOVIES]: useSelector((state) => state[MOVIES]),
       };
 
@@ -20,7 +23,7 @@ const Movies = () => {
     dispatch(onSetMovies());
     axios
       .get(
-        `${API_URL.beginningPath}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
+        `${API_URL.beginningPath}search/multi?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&query=${searchValue}&page=1&include_adult=false`
       )
       .then((Movies) => {
         dispatch(setMoviesSuccess(Movies.data.results));
@@ -43,14 +46,15 @@ const Movies = () => {
         setTvGenres(genres.data.genres);
       });
   }, []);
-  const genres = tvGenres.concat(moviesGenres)
+
+const genres = tvGenres.concat(moviesGenres)
 
   return (
     <>
-     <SectionMainTitle mainTitle={MAIN_TITLE.moviesView} />
+     <SectionMainTitle mainTitle={MAIN_TITLE.searchView} />
      <SectionPreview
-          tabs={TABS[MOVIES]}
-          previewSectionTitle={PREVIEW_SECTION_TITLE[MOVIES]}
+          //tabs={TABS[MOVIES]}
+          //previewSectionTitle={PREVIEW_SECTION_TITLE[MOVIES]}
           genres={genres}
           {...sectionData[MOVIES]}
           />
@@ -58,4 +62,4 @@ const Movies = () => {
   )
 }
 
-export default Movies
+export default SearchView

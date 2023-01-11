@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import { NAVBAR_TITLES } from './data/constants';
 import Movies from './containers/Movies/Movies';
 import Tv from './containers/Tv/Tv';
+import SearchView from './containers/Search/Search';
 
 function App() {
   return (
@@ -21,7 +22,7 @@ function App() {
       <Route path='/movies' element={<Movies/>}/>
       <Route path='/tv/:id' element={<><h1>TV Single View </h1></>}/>
       <Route path='/movies/:id' element={<><h1>Movie Single View</h1></>}/>
-      <Route path='/search/:searchValue' element={<h1>Search View</h1>}/>
+      <Route path='/search/:searchValue' element={<SearchView/>}/>
       <Route path='/userFavorites' element={<><h1>User Favs View</h1></>}/>
     </Routes>
     <Footer/>

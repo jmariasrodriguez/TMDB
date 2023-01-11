@@ -10,17 +10,19 @@ import { isMovie,oneGenre } from "../../../utils";
 
 export default function CardItem({ show, genres }) {
   const navigate = useNavigate();
-
+  let genre 
+if (!show.genre_ids){
+}else{
+  genre = oneGenre(genres,show)
+}
   const movieTv = isMovie(show);
 
-  let genre = oneGenre(genres,show)
-  
   const handleClick = () => {
     show.first_air_date
       ? navigate(`/tv/${show.id}`)
       : navigate(`/movies/${show.id}`);
   };
-
+  
   return (
     <ContainerCard value={show.id}>
       <CardCover>
@@ -47,7 +49,7 @@ export default function CardItem({ show, genres }) {
             />
           </BoxRaiting>
           <Typography textColor="#fff" fontSize="sm" paddingTop={"4px"}>
-            {movieTv.year},{genre}
+            {movieTv.year}, {genre}
           </Typography>
 
           <Typography level="h6" fontSize="md" textColor="#fff" marginTop={1}>

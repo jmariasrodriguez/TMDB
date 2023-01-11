@@ -14,7 +14,7 @@ import {
   setMoviesFail,
   setMoviesSuccess,
 } from "../../state/movies";
-import { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
+import tv, { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
 import SectionMainTitle from "../../components/Section-MainTitle";
 import SectionCarousel from "../../components/Carousel";
 import { TV_SERIES, UPCOMING, MOVIES } from "../../data/constants";
@@ -77,6 +77,7 @@ const Home = () => {
         `${API_URL.beginningPath}genre/tv/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
       )
       .then((genres) => {
+
         setTvGenres(genres.data.genres);
       });
     axios
@@ -87,8 +88,7 @@ const Home = () => {
         setCarouselShows(moviesArray.data.results);
       });
   }, []);
-
-  const getGenre = (section)=> section === "movies"? moviesGenres : tvGenres
+const genres = tvGenres.concat(moviesGenres)
 
   return (
     <>
@@ -98,7 +98,7 @@ const Home = () => {
           <SectionPreview
           tabs={TABS[section]}
           previewSectionTitle={PREVIEW_SECTION_TITLE[section]}
-          genres={getGenre(section)}
+          genres={genres}
           {...sectionData[section]}
         />
       )}

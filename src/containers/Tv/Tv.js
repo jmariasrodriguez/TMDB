@@ -44,7 +44,7 @@ const Tv = () => {
       });
   }, []);
 
-  const getGenre = (section)=> section === "movies"? moviesGenres : tvGenres
+  const genres = tvGenres.concat(moviesGenres)
 
   return (
     <>
@@ -52,7 +52,7 @@ const Tv = () => {
      <SectionPreview
           tabs={TABS[TV_SERIES]}
           previewSectionTitle={PREVIEW_SECTION_TITLE[TV_SERIES]}
-          genres={getGenre(TV_SERIES)}
+          genres={genres}
           {...sectionData[TV_SERIES]}
           />
           </>
