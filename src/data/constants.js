@@ -4,6 +4,7 @@ export const MAIN_TITLE= {
   homeView:{main:"Good to see you!",secondary:"Millions of movies and TV series to discover"},
   moviesView:{main:"Movies for you!",secondary:"Millions of movies of all time"},
   tvView:{main:"Tv series for you!",secondary:"Millions of series of all time"},
+  searchView:{main:"Search",secondary:"The result of your search:"},
 }
 
 export const TV_SERIES ="tvSeries"

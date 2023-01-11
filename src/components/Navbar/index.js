@@ -11,7 +11,6 @@ import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
-import AdbIcon from "@mui/icons-material/Adb";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
@@ -176,6 +175,7 @@ function Navbar({ navbarTitles }) {
                 inputProps={{ "aria-label": "search" }}
                 onChange={handleOnChangeInputSearchBar}
                 onKeyDown={handleKeyPressInputSearchBar}
+                value={searchInput}
               />
             </Search>
           </Box>

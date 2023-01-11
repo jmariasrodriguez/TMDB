@@ -6,9 +6,12 @@ function isMovie(show) {
   if (show.release_date) {
     year = show.release_date.split("-")[0];
     name = show.original_title;
-  } else {
+  } else if(show.first_air_date) {
     year = show.first_air_date.split("-")[0];
     name = show.name;
+  }else{
+    year="none"
+    name="none"
   }
   return { value, year, name };
 }
@@ -19,8 +22,6 @@ function oneGenre(genres, show) {
   });
   if (genre[0]) {
     genre = genre[0].name;
-  } else {
-    genre = "";
   }
 
   return genre;
