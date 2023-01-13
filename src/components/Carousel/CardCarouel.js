@@ -16,7 +16,8 @@ export default function CardCarouel({ show, genres }) {
   const handleClick = () => {
     show.first_air_date
       ? navigate(`/tv/${show.id}`)
-      : navigate(`/movies/${show.id}`);
+      : navigate(`/movie/${show.id}`);
+      window.location.reload();
   };
 
   return (

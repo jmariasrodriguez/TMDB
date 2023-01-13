@@ -7,10 +7,16 @@ export const MAIN_TITLE= {
   searchView:{main:"Search",secondary:"The result of your search:"},
 }
 
+export const SINGLE_SHOW_VIEW_TITLES = {
+    recomendations:"Recomendations",
+    cast: "Cast"
+}
+
 export const TV_SERIES ="tvSeries"
 export const UPCOMING ="upcoming"
 export const MOVIES ="movies"
 export const TAB_LABELS="tabLabels"
+export const SINGLE_SHOW = "singleShow"
 
 export const PREVIEW_SECTION_TITLE = {
   [UPCOMING]:"Upcoming",
@@ -47,3 +53,4 @@ export const RATINGS_TEXT = {
     beginningPath:"https://api.themoviedb.org/3/",
     language:"language=en-US"
 }
+

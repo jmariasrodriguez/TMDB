@@ -10,6 +10,8 @@ import {
 import { Alert, Box, CircularProgress } from "@mui/material";
 
 const SectionPreview = ({ previewSectionTitle, tabs, data, loading, error, genres }) => {
+ 
+  
   return (
     <ContainerSectionPreview>
       <ContainerSectionPreview2>

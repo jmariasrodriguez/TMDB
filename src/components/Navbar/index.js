@@ -79,6 +79,7 @@ function Navbar({ navbarTitles }) {
     if (e.code === "Enter") {
       const encoded = encodeURI(searchInput);
       navigate(`/search/moviesTv?str=${encoded}`);
+      window.location.reload();
       setSearchInput("");
     }
   };
