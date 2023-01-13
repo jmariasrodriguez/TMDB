@@ -10,17 +10,23 @@ import { isMovie,oneGenre } from "../../../utils";
 
 export default function CardItem({ show, genres }) {
   const navigate = useNavigate();
-  let genre 
-if (!show.genre_ids){
-}else{
-  genre = oneGenre(genres,show)
-}
+
+// let genre 
+// if (!show.genre_ids){ genre= "none"
+// }else{
+//   genre = oneGenre(genres,show)
+// }
+
+//let genre = oneGenre(genres, show);
+let genre = oneGenre(genres,show)
+
   const movieTv = isMovie(show);
 
   const handleClick = () => {
     show.first_air_date
       ? navigate(`/tv/${show.id}`)
-      : navigate(`/movies/${show.id}`);
+      : navigate(`/movie/${show.id}`);
+      window.location.reload();
   };
   
   return (

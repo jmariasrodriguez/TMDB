@@ -1,18 +1,16 @@
 import axios from 'axios';
-import React, {  useState,useEffect } from 'react'
+import React, {  useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import SectionMainTitle from '../../components/Section-MainTitle';
 import SectionPreview from '../../components/Section-Preview';
 import { API_URL, MAIN_TITLE, MOVIES, PREVIEW_SECTION_TITLE, TABS } from '../../data/constants';
 import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies';
 
-const Movies = () => {
+const Movies = ({genres}) => {
     const sectionData = {
         [MOVIES]: useSelector((state) => state[MOVIES]),
       };
 
-  const [moviesGenres, setMoviesGenres] = useState([]);
-  const [tvGenres, setTvGenres] = useState([]);
 
   const dispatch = useDispatch();
 
@@ -28,22 +26,7 @@ const Movies = () => {
       .catch((err) => {
         dispatch(setMoviesFail(err.message || "Sorry, something went wrong."));
       });
-    axios
-      .get(
-        `${API_URL.beginningPath}genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
-      )
-      .then((genres) => {
-        setMoviesGenres(genres.data.genres);
-      });
-      axios
-      .get(
-        `${API_URL.beginningPath}genre/tv/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
-      )
-      .then((genres) => {
-        setTvGenres(genres.data.genres);
-      });
   }, []);
-  const genres = tvGenres.concat(moviesGenres)
 
   return (
     <>

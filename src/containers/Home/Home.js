@@ -14,12 +14,12 @@ import {
   setMoviesFail,
   setMoviesSuccess,
 } from "../../state/movies";
-import tv, { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
+import { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
 import SectionMainTitle from "../../components/Section-MainTitle";
 import SectionCarousel from "../../components/Carousel";
 import { TV_SERIES, UPCOMING, MOVIES } from "../../data/constants";
 
-const Home = () => {
+const Home = ({genres}) => {
   const sectionData = {
     [UPCOMING]: useSelector((state) => state[UPCOMING]),
     [MOVIES]: useSelector((state) => state[MOVIES]),
@@ -27,8 +27,6 @@ const Home = () => {
   };
   
   const [carouselShows, setCarouselShows] = useState([]);
-  const [moviesGenres, setMoviesGenres] = useState([]);
-  const [tvGenres, setTvGenres] = useState([]);
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -65,21 +63,7 @@ const Home = () => {
       .catch((err) => {
         dispatch(setTvFail(err.message || "Sorry, something went wrong."));
       });
-    axios
-      .get(
-        `${API_URL.beginningPath}genre/movie/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
-      )
-      .then((genres) => {
-        setMoviesGenres(genres.data.genres);
-      });
-    axios
-      .get(
-        `${API_URL.beginningPath}genre/tv/list?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
-      )
-      .then((genres) => {
 
-        setTvGenres(genres.data.genres);
-      });
     axios
       .get(
         `${API_URL.beginningPath}discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}`
@@ -88,11 +72,10 @@ const Home = () => {
         setCarouselShows(moviesArray.data.results);
       });
   }, []);
-const genres = tvGenres.concat(moviesGenres)
 
   return (
     <>
-      <SectionCarousel carouselShows={carouselShows} genres={moviesGenres} />
+      <SectionCarousel carouselShows={carouselShows} genres={genres} />
       <SectionMainTitle mainTitle={MAIN_TITLE.homeView} />
       {Object.keys(PREVIEW_SECTION_TITLE).map((section)=>
           <SectionPreview

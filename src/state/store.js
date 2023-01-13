@@ -4,14 +4,16 @@ import upcomingReducer from "./upcoming";
 import moviesReducer from "./movies";
 import tvReducer from "./tv";
 import tabTitleReducer from "./tabTitle"
+import singleShowReducer from "./singleShow"
 
-import{TV_SERIES,UPCOMING,MOVIES, TAB_LABELS} from "../data/constants"
+import{TV_SERIES,UPCOMING,MOVIES,SINGLE_SHOW,TAB_LABELS} from "../data/constants"
 
 const store = configureStore({
   reducer: {
     [UPCOMING]: upcomingReducer,
     [MOVIES]: moviesReducer,
     [TV_SERIES]: tvReducer,
+    [SINGLE_SHOW]: singleShowReducer,
     [TAB_LABELS]: tabTitleReducer,
   },
 });
