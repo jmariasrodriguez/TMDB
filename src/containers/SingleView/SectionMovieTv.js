@@ -1,5 +1,5 @@
-import { Rating, Typography } from "@mui/material";
-import React from "react";
+import { IconButton, Rating, Typography } from "@mui/material";
+import React, { useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useSelector } from "react-redux";
 import { SINGLE_SHOW, RATINGS_TEXT } from "../../data/constants";
@@ -20,11 +20,24 @@ const SectionMovieTv = ({ genres }) => {
     [SINGLE_SHOW]: useSelector((state) => state[SINGLE_SHOW].data),
   };
   const movieTv = isMovie(dataTable[SINGLE_SHOW]);
-
+  const [isClicked, setIsClicked] = useState(false);
   //let genre = oneGenre(genres, dataTable[SINGLE_SHOW]);
 
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
+
+  const handleOnclick = ()=>{
+    setIsClicked(true)
+    let newData = dataTable[SINGLE_SHOW]
+    if(localStorage.getItem("data") == null){
+      localStorage.setItem("data","[]")
+    }
+
+    let oldData = JSON.parse(localStorage.getItem("data"))
+    oldData.push(newData)
+ 
+    localStorage.setItem("data", JSON.stringify(oldData))
+  }
 
   return (
     <>
@@ -74,7 +87,7 @@ const SectionMovieTv = ({ genres }) => {
                 <Typography sx={{ ml: 1, color: "#fff", fontWeight: "bold" }}>
                   {RATINGS_TEXT[movieTv.value]}
                 </Typography>{" "}
-                <FavoriteIcon sx={{ marginLeft: "16px" }}></FavoriteIcon>
+                <IconButton aria-label="favorite" color="primary" onClick={handleOnclick} disabled={isClicked} ><FavoriteIcon sx={{ marginLeft: "16px" }}/></IconButton> 
               </BoxRaiting>
               <Typography
                 variant="h6"

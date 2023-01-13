@@ -24,7 +24,7 @@ const SingleView = ({genres}) => {
     dispatch(onSetSingleShow());
     axios
       .get(
-        `${API_URL.beginningPath}${showType}/${id}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&language=en-US`
+        `${API_URL.beginningPath}${showType}/${id}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}`
       )
       .then((show) => {
         dispatch(setSingleShowSuccess(show.data));
