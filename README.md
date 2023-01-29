@@ -27,10 +27,6 @@ Web app that allows search and add a movie or tv serie to a list of favorites. T
 
 Page views were previously design in Figma: [https://www.figma.com/file/E7KJxJm0qOSQ8fZ93hSx3N/TMDB?node-id=33%3A8&t=hX6o5pWs9YXtBCbU-0](https://www.figma.com/file/E7KJxJm0qOSQ8fZ93hSx3N/TMDB?node-id=33%3A8&t=hX6o5pWs9YXtBCbU-0)
 
-### Scrum board
-
-The project was develop using the Scrum methodology. The Scrum board was made in Trello: [https://trello.com/b/JyER2TWl](https://trello.com/b/JyER2TWl)
-
 ### Built With
 
 - React
