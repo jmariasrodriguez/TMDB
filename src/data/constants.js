@@ -17,11 +17,20 @@ export const UPCOMING ="upcoming"
 export const MOVIES ="movies"
 export const TAB_LABELS="tabLabels"
 export const SINGLE_SHOW = "singleShow"
+export const MY_FAVORITES = "favorites"
+
+
+export const FAVORITE_TAB_TITLE ={
+  [MY_FAVORITES]:"My favorites"
+}
+
 
 export const PREVIEW_SECTION_TITLE = {
   [UPCOMING]:"Upcoming",
   [MOVIES]:"Movies",
-  [TV_SERIES]:"TV Series"}
+  [TV_SERIES]:"TV Series",
+  }
+
 
 export const TABS =  {upcoming:[{label:"Movies", description:"Upcoming movies in theatres"}],
 
@@ -35,6 +44,11 @@ tvSeries:[{label:"On the air", description:"TV shows that are currently on the a
 {label:"Popular", description:"See a list of current popular tv shows"},
 {label:"Top rated", description:"The top rated shows"}],
 }
+
+export const TABS_FAVORITES={favorites:[
+  {label:"All", description:"All your movies and TV Series"},
+  {label:"Movies", description:"Your favorites movies"},
+  {label:"TV Series", description:"Your favorites tv series"}]}
 
 export const RATINGS_TEXT = {
     0.5: 'Useless',

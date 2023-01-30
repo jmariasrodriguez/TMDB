@@ -10,6 +10,7 @@ import SearchView from './containers/Search/Search';
 import SingleView from './containers/SingleView/SingleView';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import FavoritesView from './containers/Favorites/FavoritesView';
 
 function App() {
 //   const [moviesGenres, setMoviesGenres] = useState([]);
@@ -50,7 +51,7 @@ let genres
       <Route path='/tv/:id' element={<SingleView genres={genres}/>}/>
       <Route path='/movie/:id' element={<SingleView genres={genres}/>}/>
       <Route path='/search/:searchValue' element={<SearchView genres={genres}/>}/>
-      <Route path='/userFavorites' element={<><h1>User Favs View</h1></>}/>
+      <Route path='/userFavorites' element={<FavoritesView genres={genres}/>}/>
     </Routes>
     <Footer/>
     </Box>
