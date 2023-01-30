@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+<a name="readme-top"></a>
+<!-- PROJECT LOGO -->
+<h3 align="center">TMDB PROJECT</h3>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+    </li>
+    <li><a href="#roadmap">Roadmap</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ol>
+</details>
 
-## Available Scripts
+<!-- ABOUT THE PROJECT -->
 
-In the project directory, you can run:
+## About The Project
 
-### `npm start`
+Web app that allows search and add a movie or tv serie to a list of favorites. The web app consumes an api of movies and tv series.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### View designs 
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Page views were previously design in Figma: [https://www.figma.com/file/E7KJxJm0qOSQ8fZ93hSx3N/TMDB?node-id=33%3A8&t=hX6o5pWs9YXtBCbU-0](https://www.figma.com/file/E7KJxJm0qOSQ8fZ93hSx3N/TMDB?node-id=33%3A8&t=hX6o5pWs9YXtBCbU-0)
 
-### `npm test`
+### Built With
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- React
+- Redux
+- Axios
+- MaterialUi
 
-### `npm run build`
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+<!-- GETTING STARTED -->
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Getting Started
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Installation
 
-### `npm run eject`
+1. Clone the repo
+   ```sh
+   git clone https://github.com/jmariasrodriguez/TMDB.git
+   ```
+2. Install NPM packages
+   ```sh
+   npm install
+   ```
+3. Run the APP
+   ```sh
+   npm start
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<!-- ROADMAP -->
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+## Roadmap
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [x] Features
+  - [x] Session persistence
+  - [x] Add a movie or tv serie to a favorite list
 
-## Learn More
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+<!-- CONTACT -->
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Contact
 
-### Code Splitting
+- Juan Manuel Arias Rodriguez » [Email](mailto:ariasrodriguez.jm@gmail.com) - [LinkedIn](https://www.linkedin.com/in/jmariasrodriguez/)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Project Link: [https://github.com/jmariasrodriguez/TMDB.git](https://github.com/jmariasrodriguez/TMDB.git)
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
