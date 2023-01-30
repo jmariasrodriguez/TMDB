@@ -33,72 +33,75 @@ const FavoritesView = ({genres}) => {
 
   return (
     <>
-    <Box display="flex" flexDirection="column" margin="auto" maxWidth="1200px">
-
-
-    <Box display= "flex" flexDirection="row" margin="8px" alignItems="center">
-                <Avatar  alt="Remy Sharp" sx={{ bgcolor: "grey", height:"100px", width:"100px", margin:"16px" }}>
-                  U
-                </Avatar>
-          
-        <Typography variant="h3" gutterBottom color={"white"}>User Profile</Typography>
-    </Box>
-
-
-
-    <Box>
-    <ContainerSectionPreview>
-      <ContainerSectionPreview2>
-        <ContainerTitleTabs>
-          <TitleSectionPreview previewSectionTitle={FAVORITE_TAB_TITLE.favorites} />
-
-
-
-<Box>
-      <TabContext value={value}>
-        <ContainerTabsTitles>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
-            {TABS_FAVORITES.favorites?.map((tab, index) => {
-              return (
-                <Tab
-                  key={index}
-                  label={tab.label}
-                  value={index}
-                  sx={{ color: "white", typography: "body1" }}
-                />
-              );
-            })}
-          </TabList>
-        </ContainerTabsTitles>
-        {TABS_FAVORITES.favorites?.map((tab, index) => {
-          return (
-            <TabPanel key={index} value={index} sx={{ color: "white" }}>
-              {tab.description}
-            </TabPanel>
-          );
-        })}
-      </TabContext>
-    </Box>
-
-
-        </ContainerTitleTabs>
-
-
-
-
-        {/* {loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
-        {error && <Alert variant="filled" severity="error">{error}</Alert>} */}
-        <SectionList data={data} genres={genres} />
-      </ContainerSectionPreview2>
-    </ContainerSectionPreview>
-        </Box>   
-
-
-
-
-    <Box>Section list</Box>   
-    </Box>
+    <h1>Under construction</h1>
     </>
+//     <>
+//     <Box display="flex" flexDirection="column" margin="auto" maxWidth="1200px">
+
+
+//     <Box display= "flex" flexDirection="row" margin="8px" alignItems="center">
+//                 <Avatar  alt="Remy Sharp" sx={{ bgcolor: "grey", height:"100px", width:"100px", margin:"16px" }}>
+//                   U
+//                 </Avatar>
+          
+//         <Typography variant="h3" gutterBottom color={"white"}>User Profile</Typography>
+//     </Box>
+
+
+
+//     <Box>
+//     <ContainerSectionPreview>
+//       <ContainerSectionPreview2>
+//         <ContainerTitleTabs>
+//           <TitleSectionPreview previewSectionTitle={FAVORITE_TAB_TITLE.favorites} />
+
+
+
+// <Box>
+//       <TabContext value={value}>
+//         <ContainerTabsTitles>
+//           <TabList onChange={handleChange} aria-label="lab API tabs example">
+//             {TABS_FAVORITES.favorites?.map((tab, index) => {
+//               return (
+//                 <Tab
+//                   key={index}
+//                   label={tab.label}
+//                   value={index}
+//                   sx={{ color: "white", typography: "body1" }}
+//                 />
+//               );
+//             })}
+//           </TabList>
+//         </ContainerTabsTitles>
+//         {TABS_FAVORITES.favorites?.map((tab, index) => {
+//           return (
+//             <TabPanel key={index} value={index} sx={{ color: "white" }}>
+//               {tab.description}
+//             </TabPanel>
+//           );
+//         })}
+//       </TabContext>
+//     </Box>
+
+
+//         </ContainerTitleTabs>
+
+
+
+
+//         {/* {loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
+//         {error && <Alert variant="filled" severity="error">{error}</Alert>} */}
+//         <SectionList data={data} genres={genres} />
+//       </ContainerSectionPreview2>
+//     </ContainerSectionPreview>
+//         </Box>   
+
+
+
+
+//     <Box>Section list</Box>   
+//     </Box>
+//     </>
   )
 }
 
