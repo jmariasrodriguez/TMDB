@@ -2,6 +2,7 @@ import { Grid, Typography } from "@mui/material";
 import React, { useEffect } from "react";
 import {
   ContainerSectionList,
+  ContainerSectionPreview,
   ContainerSectionPreview2,
 } from "../../components/Section-Preview/styleSectionPreview";
 import ActorCard from "./ActorCard";
@@ -11,8 +12,8 @@ const SectionCast = ({ casting, Title }) => {
 
   console.log(dataActors);
   return (
-    <ContainerSectionPreview2 sx={{ width: "100%" }}>
-      <Typography variant="h4" sx={{ color: "#fff", margin: "4px" }}>
+    <ContainerSectionPreview>
+      <Typography variant="h4" sx={{ color: "#fff", margin: "4px", marginTop:"16px"}}>
         {Title}
       </Typography>
       <ContainerSectionList container sx={{}} spacing={3}>
@@ -24,7 +25,7 @@ const SectionCast = ({ casting, Title }) => {
           );
         })}
       </ContainerSectionList>
-    </ContainerSectionPreview2>
+    </ContainerSectionPreview>
   );
 };
 

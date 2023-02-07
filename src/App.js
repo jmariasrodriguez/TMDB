@@ -35,6 +35,7 @@ function App() {
 
 // const genres = tvGenres.concat(moviesGenres)
 //console.log(genres)
+
 let genres
   
   return (

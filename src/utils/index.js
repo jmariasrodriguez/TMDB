@@ -32,4 +32,9 @@ function oneGenre(genres,show) {
   return genre
 }
 
-module.exports = { isMovie,oneGenre };
+ function overviewLimit (text){
+  let textArray = text.split("").slice(0,280).join("")
+  return textArray + "..."
+}
+
+module.exports = { isMovie,oneGenre,overviewLimit };

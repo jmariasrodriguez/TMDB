@@ -79,6 +79,7 @@ const Home = ({genres}) => {
       <SectionMainTitle mainTitle={MAIN_TITLE.homeView} />
       {Object.keys(PREVIEW_SECTION_TITLE).map((section)=>
           <SectionPreview
+          key={section}
           tabs={TABS[section]}
           previewSectionTitle={PREVIEW_SECTION_TITLE[section]}
           genres={genres}

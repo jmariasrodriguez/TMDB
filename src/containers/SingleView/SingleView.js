@@ -53,9 +53,13 @@ const SingleView = ({genres}) => {
       sx={{
         display: "flex",
         flexDirection: "column",
-        justifyContent: "center",
         margin: "auto",
-        maxWidth: "1600px",
+        maxWidth: "1200px",
+        marginTop: "36px",
+        marginBottom: "36px",
+        paddingTop: "16px",
+        paddingBottom: "16px",
+        marginLeft:{sm:"8px", md:"auto"},
       }}
     >
       <SectionMovieTv genres={genres} />
