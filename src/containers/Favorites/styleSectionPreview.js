@@ -18,9 +18,6 @@ export const ContainerSectionPreview2 = styled(Box)(({ theme }) => ({
   marginBottom: "36px",
   paddingTop: "16px",
   paddingBottom: "16px",
-  [theme.breakpoints.down('sm')]: {
-    marginLeft:"8px",
-  },
 }));
 
 export const ContainerTitleTabs = styled(Box)(({ theme }) => ({
@@ -28,11 +25,6 @@ export const ContainerTitleTabs = styled(Box)(({ theme }) => ({
   flexDirection: "row",
   gap: "20px",
   maxHeight: "90px",
-
-  [theme.breakpoints.down('sm')]: {
-    flexDirection: "column",
-    marginBottom:"20px"
-  },
 
 }));
 
@@ -49,11 +41,6 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
   alignItems: "flex-start",
   flexWrap: "nowrap",
   overflow: "auto",
-  
-  [theme.breakpoints.down('sm')]: {
-    margin:"0px",
-    maxWidth:"100%",
-  },
 
   "&::-webkit-scrollbar": {
     width: "20px",
@@ -74,9 +61,9 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
 
 //OnePage-Section-Preview-SectionList-index or cards container
 export const ContainerSectionListOnePage = styled(Grid)(({ theme }) => ({
-  flexDirection: "row",
-  justifyContent: "flex-start",
-  alignItems: "flex-start",
+  // flexDirection: "row",
+  //  justifyContent: "center",
+  //  alignItems: "center",
 
   "&::-webkit-scrollbar": {
     width: "20px",

@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { SINGLE_SHOW, RATINGS_TEXT } from "../../data/constants";
 import { CardCover, ThemeProvider } from "@mui/joy";
 import { BoxRaiting } from "../../components/Section-Preview/styleSectionPreview";
-import { isMovie, oneGenre } from "../../utils";
+import { isMovie, oneGenre, overviewLimit } from "../../utils";
 import StarIcon from "@mui/icons-material/Star";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import {
@@ -39,9 +39,10 @@ const SectionMovieTv = ({ genres }) => {
     localStorage.setItem("data", JSON.stringify(oldData))
   }
 
+
   return (
     <>
-      <ContainerCard container>
+      <ContainerCard container sx={{}}>
         <CardCover sx={{ opacity: "0.4" }}>
           <img
             src={`https://www.themoviedb.org/t/p/original/${dataTable[SINGLE_SHOW].backdrop_path}`}
@@ -99,9 +100,10 @@ const SectionMovieTv = ({ genres }) => {
               <Typography
                 variant="body1"
                 color="#fff"
-                sx={{ marginRight: "20%" }}
+                sx={{ marginRight: "10%"}}
               >
-                {dataTable[SINGLE_SHOW].overview}{" "}
+                {dataTable[SINGLE_SHOW].overview}
+                
               </Typography>
             </ThemeProvider>
           </TextBox>

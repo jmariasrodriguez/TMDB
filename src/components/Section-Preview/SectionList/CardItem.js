@@ -18,7 +18,8 @@ export default function CardItem({ show, genres }) {
 // }
 
 //let genre = oneGenre(genres, show);
-let genre = oneGenre(genres,show)
+
+let genre
 
   const movieTv = isMovie(show);
 

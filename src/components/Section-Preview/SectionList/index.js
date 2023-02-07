@@ -107,7 +107,7 @@ const SectionList = ({ data, genres }) => {
         {data?.map((show, index) => {
           return (
             <Grid item>
-              <CardItem key={index} show={show} index={index} genres={genres} />
+              <CardItem key={show.id} show={show} index={index} genres={genres} />
             </Grid>
           );
         })}
@@ -119,7 +119,7 @@ const SectionList = ({ data, genres }) => {
       {data?.map((show, index) => {
         return (
           <Grid item>
-            <CardItem key={index} show={show} index={index} genres={genres} />
+            <CardItem key={show.id} show={show} index={index} genres={genres} />
           </Grid>
         );
       })}
