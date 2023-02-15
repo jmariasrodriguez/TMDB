@@ -2,6 +2,18 @@ import { Card, CardContent } from "@mui/joy";
 import { Box } from "@mui/material";
 import { styled } from "@mui/system";
 
+export const ContainterSingleView = styled(Box)(({theme})=>({
+    display: "flex",
+    flexDirection: "column",
+    margin: "auto",
+    maxWidth: "1200px",
+    marginTop: "36px",
+    marginBottom: "36px",
+    paddingTop: "16px",
+    paddingBottom: "16px",
+    marginLeft:{sm:"8px", md:"auto"},
+}))
+
 export const ContainerCard = styled(Card)(({ theme }) => ({
   display: "flex",
   height: "380px",

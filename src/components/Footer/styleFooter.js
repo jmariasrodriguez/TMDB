@@ -6,7 +6,7 @@ export const ContainerFooter = styled(Grid)(({ theme }) => ({
   flexDirection: "row",
   justifyContent: "flex-start",
   alignItems: "center",
-  backgroundColor: "#27265B",
+  backgroundColor: "#202020",
   minHeight: "50px",
 
   }));

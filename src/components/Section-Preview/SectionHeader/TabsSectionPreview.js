@@ -82,24 +82,22 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
         <ContainerTabsTitles>
           <TabList onChange={handleChange} aria-label="lab API tabs example">
             {tabs?.map((tab, index) => {
-              return (
-                <Tab
-                  key={index}
-                  label={tab.label}
-                  value={index}
-                  sx={{ color: "white", typography: "body1" }}
-                />
-              );
+              
+                {if(tab.label){
+                  return (<Tab
+                    key={index}
+                    label={tab.label}
+                    value={index}
+                    sx={{ color: "#f9f9f9", typography: "body1" }}
+                  />)
+                }
+              else{
+                return null
+              }}
+
             })}
           </TabList>
         </ContainerTabsTitles>
-        {tabs?.map((tab, index) => {
-          return (
-            <TabPanel key={index} value={index} sx={{ color: "white" }}>
-              {tab.description}
-            </TabPanel>
-          );
-        })}
       </TabContext>
     </Box>
   );

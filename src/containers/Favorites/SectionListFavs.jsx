@@ -10,7 +10,7 @@ import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies
 import { onSetTv, setTvFail, setTvSuccess } from '../../state/tv';
 import CardFavoriteItem from './CardFavoriteItem';
 
-const SectionListFavs = ({ data, genres }) => {
+const SectionListFavs = ({ data}) => {
   let searchValue = useLocation().search.split("=")[1]
     const dispatch = useDispatch();
     const dataTable ={
@@ -48,21 +48,21 @@ const SectionListFavs = ({ data, genres }) => {
               })
         }
   return (
-    <>
+    <Box>
     <ContainerSectionListOnePage  spacing={0}>
       {data?.map((show, index) => {
         return (
           <Grid item>
-            <CardFavoriteItem key={index} show={show} index={index} genres={genres} />
+            <CardFavoriteItem key={index} show={show} index={index}/>
           </Grid>
         );
       })}
     </ContainerSectionListOnePage>
-    <Box sx={{ margin:"auto", p:"24px"}}>
+    <Box sx={{ margin:"auto", p:"24px", display:"flex",justifyContent:"center"}}>
       <Stack  spacing={2}>
         <Pagination count={totalPages}  onChange={handleChange} variant="outlined" shape="rounded"  color="primary" /></Stack>
     </Box>
-  </>)
+  </Box>)
 }
 
 export default SectionListFavs

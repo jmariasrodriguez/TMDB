@@ -18,8 +18,9 @@ import { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
 import SectionMainTitle from "../../components/Section-MainTitle";
 import SectionCarousel from "../../components/Carousel";
 import { TV_SERIES, UPCOMING, MOVIES } from "../../data/constants";
+import { Box } from "@mui/material";
 
-const Home = ({genres}) => {
+const Home = () => {
   const sectionData = {
     [UPCOMING]: useSelector((state) => state[UPCOMING]),
     [MOVIES]: useSelector((state) => state[MOVIES]),
@@ -27,43 +28,9 @@ const Home = ({genres}) => {
   };
   
   const [carouselShows, setCarouselShows] = useState([]);
-
   const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(onSetUpcoming());
-    dispatch(onSetTv());
-    dispatch(onSetMovies());
-    axios
-      .get(
-        `${API_URL.beginningPath}movie/upcoming?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
-      )
-      .then((upcomingMovies) => {
-        dispatch(setUpcomingSuccess(upcomingMovies.data.results));
-      })
-      .catch((err) => {
-        dispatch(setUpcomingFail(err.message || "Sorry, something went wrong."));
-      });
-    axios
-      .get(
-        `${API_URL.beginningPath}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
-      )
-      .then((Movies) => {
-        dispatch(setMoviesSuccess(Movies.data.results));
-      })
-      .catch((err) => {
-        dispatch(setMoviesFail(err.message || "Sorry, something went wrong."));
-      });
-    axios
-      .get(
-        `${API_URL.beginningPath}tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
-      )
-      .then((TV) => {
-        dispatch(setTvSuccess(TV.data.results));
-      })
-      .catch((err) => {
-        dispatch(setTvFail(err.message || "Sorry, something went wrong."));
-      });
 
+  useEffect(() => {
     axios
       .get(
         `${API_URL.beginningPath}discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}`
@@ -72,21 +39,62 @@ const Home = ({genres}) => {
         setCarouselShows(moviesArray.data.results);
       });
   }, []);
+  
+  useEffect(() => {
+    dispatch(onSetUpcoming());
+    axios
+    .get(
+      `${API_URL.beginningPath}movie/upcoming?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
+    )
+    .then((upcomingMovies) => {
+      dispatch(setUpcomingSuccess(upcomingMovies.data.results));
+    })
+    .catch((err) => {
+      dispatch(setUpcomingFail(err.message || "Sorry, something went wrong."));
+    });   
+  }, [])
+  
+  useEffect(() => {
+    dispatch(onSetMovies());
+    axios
+    .get(
+      `${API_URL.beginningPath}movie/now_playing?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
+    )
+    .then((Movies) => {
+      dispatch(setMoviesSuccess(Movies.data.results));
+    })
+    .catch((err) => {
+      dispatch(setMoviesFail(err.message || "Sorry, something went wrong."));
+    }); 
+  }, [])
+
+  useEffect(() => {
+    dispatch(onSetTv());
+    axios
+    .get(
+      `${API_URL.beginningPath}tv/on_the_air?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
+    )
+    .then((TV) => {
+      dispatch(setTvSuccess(TV.data.results));
+    })
+    .catch((err) => {
+      dispatch(setTvFail(err.message || "Sorry, something went wrong."));
+    });
+  }, [])
 
   return (
-    <>
-      <SectionCarousel carouselShows={carouselShows} genres={genres} />
+    <Box>
+      <SectionCarousel items={carouselShows}  />
       <SectionMainTitle mainTitle={MAIN_TITLE.homeView} />
       {Object.keys(PREVIEW_SECTION_TITLE).map((section)=>
           <SectionPreview
           key={section}
           tabs={TABS[section]}
           previewSectionTitle={PREVIEW_SECTION_TITLE[section]}
-          genres={genres}
           {...sectionData[section]}
         />
       )}
-    </>
+    </Box>
   );
 };
 

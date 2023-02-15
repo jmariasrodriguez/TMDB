@@ -1,9 +1,9 @@
-import { Box } from "@mui/material";
+import { Alert, Box, CircularProgress } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useParams } from "react-router-dom";
-import { API_URL, SINGLE_SHOW_VIEW_TITLES } from "../../data/constants";
+import { API_URL, SINGLE_SHOW, SINGLE_SHOW_VIEW_TITLES } from "../../data/constants";
 import {
   onSetSingleShow,
   setSingleShowFail,
@@ -12,8 +12,9 @@ import {
 import SectionCast from "./SectionCast";
 import SectionMovieTv from "./SectionMovieTv";
 import SectionRecomendations from "./SectionRecomendations";
+import { ContainterSingleView } from "./styleSingleView";
 
-const SingleView = ({genres}) => {
+const SingleView = () => {
   const { id } = useParams();
   const showType = useLocation().pathname.split("/")[1];
   const dispatch = useDispatch();
@@ -47,25 +48,19 @@ const SingleView = ({genres}) => {
       });
   }, []);
 
+  const sectionData = {
+    [SINGLE_SHOW]: useSelector((state) => state[SINGLE_SHOW]),
+  };
+
+
   return (
-    <Box
-      container
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        margin: "auto",
-        maxWidth: "1200px",
-        marginTop: "36px",
-        marginBottom: "36px",
-        paddingTop: "16px",
-        paddingBottom: "16px",
-        marginLeft:{sm:"8px", md:"auto"},
-      }}
-    >
-      <SectionMovieTv genres={genres} />
-      <SectionCast Title={SINGLE_SHOW_VIEW_TITLES.cast} casting={casting} />
-      <SectionRecomendations Title={SINGLE_SHOW_VIEW_TITLES.recomendations} recomendationsData={recomendations} />
-    </Box>
+    <ContainterSingleView>
+      {sectionData[SINGLE_SHOW].loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
+      {sectionData[SINGLE_SHOW].error && <Alert variant="filled" severity="error">{sectionData[SINGLE_SHOW].error}</Alert>}
+      <SectionMovieTv/>
+      <SectionCast Title={SINGLE_SHOW_VIEW_TITLES.cast} data={casting} />
+      <SectionRecomendations Title={SINGLE_SHOW_VIEW_TITLES.recomendations} data={recomendations} />
+    </ContainterSingleView>
   );
 };
 

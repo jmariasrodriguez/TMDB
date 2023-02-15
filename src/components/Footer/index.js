@@ -32,7 +32,7 @@ const Footer = () => {
           />
         </IconImage>
         <Grid item>
-          <Typography variant="body1" fontWeight="bold" color="white">
+          <Typography variant="body1" fontWeight="bold" color="#f9f9f9">
             This product uses the TMDB API but is not endorsed or certify by
             TMDB
           </Typography>
@@ -47,7 +47,7 @@ const Footer = () => {
         </IconImage>
         <IconImage item>
           <IconButton onClick={handleClickGitHub}>
-            <GitHubIcon sx={{ color: "black" }} fontSize="large" />
+            <GitHubIcon sx={{ color: "#101010" }} fontSize="large" />
           </IconButton>
         </IconImage>
       </ContainerFooterSections>

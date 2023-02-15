@@ -8,5 +8,5 @@ export const BoxMainTitle = styled(Box)(({ theme }) => ({
 }));
 
 export const BoxContainerMainTitle = styled(Box)(({ theme }) => ({
-  backgroundColor: "#27265B",
+  
 }));

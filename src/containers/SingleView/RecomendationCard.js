@@ -8,15 +8,15 @@ import { ThemeProvider } from "@mui/joy";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
-export default function RecomendationCard({ recomendationData }) {
+export default function RecomendationCard({ item }) {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
   const navigate = useNavigate();
 
 const handleClick = () => {
-      recomendationData.first_air_date
-        ? navigate(`/tv/${recomendationData.id}`)
-        : navigate(`/movie/${recomendationData.id}`);
+      item.first_air_date
+        ? navigate(`/tv/${item.id}`)
+        : navigate(`/movie/${item.id}`);
         window.location.reload();
   };
 
@@ -26,13 +26,13 @@ const handleClick = () => {
       <CardMedia
         component="img"
         height="240px"
-        image={`https://www.themoviedb.org/t/p/original${recomendationData.backdrop_path}`}
-        alt={recomendationData.media_type === "tv"? recomendationData.original_name : recomendationData.title}
+        image={`https://www.themoviedb.org/t/p/original${item.backdrop_path}`}
+        alt={item.media_type === "tv"? item.original_name : item.title}
       />
       <CardContent
         sx={{
           backgroundColor: "#22214F",
-          color: "#fff",
+          color: "#f9f9f9",
           height: "80px",
           paddingTop: "4px",
           pr: "8px",
@@ -43,10 +43,10 @@ const handleClick = () => {
           <Typography
             
             variant="subtitle1"
-            textColor="#fff"
+            textColor="#f9f9f9"
             fontWeight="600"
           >
-            {recomendationData.media_type === "tv"? recomendationData.original_name : recomendationData.title}
+            {item.media_type === "tv"? item.original_name : item.title}
           </Typography>
         </ThemeProvider>
       </CardContent>
