@@ -6,22 +6,21 @@ import Typography from "@mui/material/Typography";
 import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import { ThemeProvider } from "@mui/joy";
 
-export default function ActorCard({ actorData }) {
+export default function ActorCard({ item }) {
   let theme = createTheme();
   theme = responsiveFontSizes(theme);
 
   return (
-    <>
     <Card sx={{ height: "300px", width: "150px", padding: "0px" }}>
       <CardMedia
         component="img"
-        image={`https://www.themoviedb.org/t/p/original${actorData.profile_path}`}
-        alt={actorData.original_name}
+        image={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
+        alt={item.original_name}
         />
       <CardContent
         sx={{
           backgroundColor: "#22214F",
-          color: "#fff",
+          color: "#f9f9f9",
           height: "70px",
           paddingTop: "4px",
           pr: "8px",
@@ -32,15 +31,14 @@ export default function ActorCard({ actorData }) {
         <ThemeProvider theme={theme}>
           <Typography
             variant="subtitle2"
-            textColor="#fff"
+            textColor="#f9f9f9"
             fontWeight="600"
             >
-            {actorData.original_name}
+            {item.original_name}
           </Typography>
-          <Typography variant="body1">{actorData.character}</Typography>
+          <Typography variant="body1">{item.character}</Typography>
         </ThemeProvider>
       </CardContent>
     </Card>
-   </>
   );
 }

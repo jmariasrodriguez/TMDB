@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import SectionPreview from '../../components/Section-Preview';
 import { API_URL, MAIN_TITLE, MOVIES } from '../../data/constants';
 import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies';
 
-const SearchView = ({genres}) => {
+const SearchView = () => {
     let searchValue = useLocation().search.split("=")[1]
 
  const sectionData = {
@@ -31,13 +32,12 @@ const SearchView = ({genres}) => {
 
 
   return (
-    <>
+    <Box>
      <SectionMainTitle mainTitle={MAIN_TITLE.searchView} />
      <SectionPreview
-          genres={genres}
           {...sectionData[MOVIES]}
           />
-          </>
+          </Box>
   )
 }
 

@@ -22,26 +22,24 @@ import SectionListFavs from "./SectionListFavs";
 import { useDispatch, useSelector } from "react-redux";
 import { onSetFavorites, setFavoritesSuccess } from "../../state/favorites";
 
-const FavoritesView = ({ genres }) => {
+const FavoritesView = () => {
   const sectionData = {
     favorites: useSelector((state) => state.favorites),
   };
   const dispatch = useDispatch();
-
+  
   const [favorites, setFavorites] = useState([]);
   const [value, setValue] = useState(0);
   const [data, setData] = useState([]);
-
+  
   useEffect(() => {
     dispatch(onSetFavorites());
     dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
     //setFavorites(JSON.parse(localStorage.getItem("data")))
     setData(sectionData.favorites.data);
   }, []);
-
-  const series = sectionData.favorites.data.filter(
-    (item) => item.first_air_date
-  );
+  
+  const series = sectionData.favorites.data.filter( (item) => item.first_air_date);
   const movies = sectionData.favorites.data.filter((item) => item.release_date);
 
   const handleChange = (event, newValue) => {
@@ -56,7 +54,6 @@ const FavoritesView = ({ genres }) => {
   };
 
   return (
-    <>
       <Box
         display="flex"
         flexDirection="column"
@@ -72,7 +69,7 @@ const FavoritesView = ({ genres }) => {
           <Avatar
             alt="Remy Sharp"
             sx={{
-              bgcolor: "grey",
+              bgcolor: "#595858",
               height: "100px",
               width: "100px",
               margin: "16px",
@@ -80,13 +77,12 @@ const FavoritesView = ({ genres }) => {
           >
             U
           </Avatar>
-          <Typography variant="h3" gutterBottom color={"white"}>
+          <Typography variant="h3" gutterBottom color={"#f9f9f9"}>
             User Profile
           </Typography>
         </Box>
         <Box>
           <ContainerSectionPreview>
-            <ContainerSectionPreview2>
               <ContainerTitleTabs>
                 <TitleSectionPreview
                   previewSectionTitle={FAVORITE_TAB_TITLE.favorites}
@@ -104,39 +100,22 @@ const FavoritesView = ({ genres }) => {
                               key={index}
                               label={tab.label}
                               value={index}
-                              sx={{ color: "white", typography: "body1" }}
+                              sx={{ color: "#f9f9f9", typography: "body1" }}
                             />
                           );
                         })}
                       </TabList>
                     </ContainerTabsTitles>
-                    {TABS_FAVORITES.favorites?.map((tab, index) => {
-                      return (
-                        <TabPanel
-                          key={index}
-                          value={index}
-                          sx={{ color: "white" }}
-                        >
-                          {tab.description}
-                        </TabPanel>
-                      );
-                    })}
                   </TabContext>
                 </Box>
               </ContainerTitleTabs>
-{/* 
-              {sectionData.favorites.loading && (
-                <Box sx={{ display: "flex" }}>
-                  <CircularProgress />
-                </Box>
-              )} */}
-              {/* {error && <Alert variant="filled" severity="error">{error}</Alert>} */}
-              <SectionListFavs data={data} genres={genres} />
-            </ContainerSectionPreview2>
+
+              {sectionData.favorites.loading && (<Box sx={{ display: "flex" }}><CircularProgress /></Box>)}
+               {/* {error && <Alert variant="filled" severity="error">{error}</Alert>} */}
+              <SectionListFavs data={data}/>
           </ContainerSectionPreview>
         </Box>
       </Box>
-    </>
   );
 };
 

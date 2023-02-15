@@ -10,7 +10,7 @@ import { API_URL, TAB_LABELS } from "../../../data/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { onSetTv, setTvFail, setTvSuccess } from "../../../state/tv";
 
-const SectionList = ({ data, genres }) => {
+const SectionList = ({ data }) => {
   const match = useMatch('/')
   const matchTv = useMatch('/tv')
   const matchMovies = useMatch('/movies')
@@ -101,34 +101,37 @@ const SectionList = ({ data, genres }) => {
           });
       }
     }
+
+
   return match? (
-    <>
       <ContainerSectionList container spacing={3}>
-        {data?.map((show, index) => {
+        {data?.map((item, index) => {
           return (
-            <Grid item>
-              <CardItem key={show.id} show={show} index={index} genres={genres} />
+            <Grid item key={item.id}>
+              <CardItem key={item.id} item={item} index={index}  />
             </Grid>
           );
         })}
       </ContainerSectionList>
-    </>
   ): 
-  ( <>
+  ( 
+    <Box>
     <ContainerSectionListOnePage container spacing={3}>
-      {data?.map((show, index) => {
+      {data?.map((item, index) => {
         return (
-          <Grid item>
-            <CardItem key={show.id} show={show} index={index} genres={genres} />
+          <Grid item key={item.id}>
+            <CardItem key={item.id} item={item} index={index}  />
           </Grid>
         );
       })}
     </ContainerSectionListOnePage>
-    <Box sx={{ margin:"auto", p:"24px"}}>
+    <Box sx={{ margin:"auto", p:"24px", display:"flex", justifyContent:"center"}}>
       <Stack  spacing={2}>
         <Pagination count={totalPages}  onChange={handleChange} variant="outlined" shape="rounded"  color="primary" /></Stack>
     </Box>
-  </>)
+
+    </Box>
+    )
 }
 
 export default SectionList;

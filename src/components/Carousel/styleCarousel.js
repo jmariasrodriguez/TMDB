@@ -6,9 +6,7 @@ import Carousel from "react-material-ui-carousel";
 export const CarouselContainer = styled(Carousel)(({ theme }) => ({
   margin: "auto",
   marginBottom: "1.5%",
-  marginTop: "1%",
   height: "370px",
-  maxWidth: "1200px",
 }));
 
 //Carousel Card

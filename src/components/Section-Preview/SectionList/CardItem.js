@@ -6,40 +6,45 @@ import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea } from "@mui/material";
 import { ContainerCard, ContentCard, BoxRaiting } from "../styleSectionPreview";
-import { isMovie,oneGenre } from "../../../utils";
+import {oneGenre } from "../../../utils";
+import {getParsedITem} from "../../../utils/formatters"
+import { useSelector } from "react-redux";
 
-export default function CardItem({ show, genres }) {
+
+export default function CardItem({ item}) {
+  const movieTv = getParsedITem(item);
+
+  const sectionData = {
+    moviesGenre: useSelector((state) => state.moviesGenre),
+    seriesGenre: useSelector((state) => state.seriesGenre),
+  };
+
+  let genre
+  if(movieTv === "Movie"){
+     genre = sectionData.moviesGenre
+  }else{
+    genre = sectionData.moviesGenre
+  }
+
   const navigate = useNavigate();
 
-// let genre 
-// if (!show.genre_ids){ genre= "none"
-// }else{
-//   genre = oneGenre(genres,show)
-// }
-
-//let genre = oneGenre(genres, show);
-
-let genre
-
-  const movieTv = isMovie(show);
-
   const handleClick = () => {
-    show.first_air_date
-      ? navigate(`/tv/${show.id}`)
-      : navigate(`/movie/${show.id}`);
+    item.first_air_date
+      ? navigate(`/tv/${item.id}`)
+      : navigate(`/movie/${item.id}`);
       window.location.reload();
   };
   
   return (
-    <ContainerCard value={show.id}>
+    <ContainerCard value={item.id}>
       <CardCover>
         <img
-          srcSet={`https://www.themoviedb.org/t/p/original/${show.poster_path}`}
+          srcSet={`https://www.themoviedb.org/t/p/original/${item.poster_path}`}
           alt={movieTv.name}
         />
       </CardCover>
       <CardActionArea sx={{position:"relative", height:"100%"}} onClick={handleClick}>
-        <ContentCard value={show.id}>
+        <ContentCard value={item.id}>
           <BoxRaiting>
             <Rating
               name="text-feedback"
@@ -49,17 +54,17 @@ let genre
               size="small"
               emptyIcon={
                 <StarIcon
-                  style={{ opacity: 0.3, color: "#fff" }}
+                  style={{ opacity: 0.3, color: "#f9f9f9" }}
                   fontSize="inherit"
                 />
               }
             />
           </BoxRaiting>
-          <Typography textColor="#fff" fontSize="sm" paddingTop={"4px"}>
-            {movieTv.year}, {genre}
+          <Typography textColor="#f9f9f9" fontSize="sm" paddingTop={"4px"}>
+            {movieTv.year},
+            {item.genre_ids && sectionData.moviesGenre.data.length > 0 && sectionData.moviesGenre.data.length > 0 ? oneGenre(genre.data, item) : null}
           </Typography>
-
-          <Typography level="h6" fontSize="md" textColor="#fff" marginTop={1}>
+          <Typography level="h6" fontSize="md" textColor="#f9f9f9" marginTop={1}>
             {movieTv.name}
           </Typography>
         </ContentCard>

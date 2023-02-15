@@ -32,23 +32,21 @@ export const PREVIEW_SECTION_TITLE = {
   }
 
 
-export const TABS =  {upcoming:[{label:"Movies", description:"Upcoming movies in theatres"}],
+export const TABS =  {upcoming:[{label:null}],
 
-movies:[{label:"In theaters", description:"What to watch in theaters"},
-//{label:"Latest", description:"Find the most newly movies"},
-{label:"Popular", description:"See a list of current popular movies"},
-{label:"Top rated", description:"The top rated movies"}],
+movies:[{label:"In theaters"},
+{label:"Popular"},
+{label:"Top rated"}],
 
-tvSeries:[{label:"On the air", description:"TV shows that are currently on the air"},
-//{label:"Latest", description:"Find the most newly tv shows"},
-{label:"Popular", description:"See a list of current popular tv shows"},
-{label:"Top rated", description:"The top rated shows"}],
+tvSeries:[{label:"On the air"},
+{label:"Popular"},
+{label:"Top rated"}],
 }
 
 export const TABS_FAVORITES={favorites:[
-  {label:"All", description:"All your movies and TV Series"},
-  {label:"Movies", description:"Your favorites movies"},
-  {label:"TV Series", description:"Your favorites tv series"}]}
+  {label:"All"},
+  {label:"Movies"},
+  {label:"TV Series"}]}
 
 export const RATINGS_TEXT = {
     0.5: 'Useless',
@@ -67,4 +65,3 @@ export const RATINGS_TEXT = {
     beginningPath:"https://api.themoviedb.org/3/",
     language:"language=en-US"
 }
-

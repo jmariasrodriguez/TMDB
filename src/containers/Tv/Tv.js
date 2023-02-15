@@ -1,3 +1,4 @@
+import { Box } from '@mui/material';
 import axios from 'axios';
 import React, {  useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +7,7 @@ import SectionPreview from '../../components/Section-Preview';
 import { API_URL, MAIN_TITLE, PREVIEW_SECTION_TITLE, TABS, TV_SERIES } from '../../data/constants';
 import { onSetTv, setTvFail, setTvSuccess } from '../../state/tv';
 
-const Tv = ({genres}) => {
+const Tv = () => {
     const sectionData = {
       [TV_SERIES]: useSelector((state) => state[TV_SERIES]),
       };
@@ -27,15 +28,14 @@ const Tv = ({genres}) => {
   }, []);
 
   return (
-    <>
+    <Box>
      <SectionMainTitle mainTitle={MAIN_TITLE.tvView} />
      <SectionPreview
           tabs={TABS[TV_SERIES]}
           previewSectionTitle={PREVIEW_SECTION_TITLE[TV_SERIES]}
-          genres={genres}
           {...sectionData[TV_SERIES]}
           />
-          </>
+      </Box>
   )
 }
 

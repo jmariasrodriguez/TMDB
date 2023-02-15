@@ -5,11 +5,8 @@ import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 
 //Section-Preview
-export const ContainerSectionPreview = styled(Box)(({ theme }) => ({
-  backgroundColor: "#27265B",
-}));
 
-export const ContainerSectionPreview2 = styled(Box)(({ theme }) => ({
+export const ContainerSectionPreview = styled(Box)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   margin: "auto",
@@ -18,6 +15,7 @@ export const ContainerSectionPreview2 = styled(Box)(({ theme }) => ({
   marginBottom: "36px",
   paddingTop: "16px",
   paddingBottom: "16px",
+  backgroundColor: "#27265B",
 }));
 
 export const ContainerTitleTabs = styled(Box)(({ theme }) => ({
@@ -47,7 +45,7 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
     height: "8px",
   },
   "&::-webkit-scrollbar-track": {
-    boxShadow: "inset 0 0 5px rgb(255, 251, 251)",
+    boxShadow: "inset 0 0 5px #f9f9f9",
     borderRadius: "20px",
   },
   "&::-webkit-scrollbar-thumb": {
@@ -70,7 +68,7 @@ export const ContainerSectionListOnePage = styled(Grid)(({ theme }) => ({
     height: "8px",
   },
   "&::-webkit-scrollbar-track": {
-    boxShadow: "inset 0 0 5px rgb(255, 251, 251)",
+    boxShadow: "inset 0 0 5px #f9f9f9",
     borderRadius: "20px",
   },
   "&::-webkit-scrollbar-thumb": {

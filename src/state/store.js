@@ -6,6 +6,8 @@ import tvReducer from "./tv";
 import tabTitleReducer from "./tabTitle"
 import singleShowReducer from "./singleShow"
 import favoritesReducer from "./favorites"
+import moviesGenreReducer from "./moviesGenre"
+import seriesGenreReducer from "./seriesGenre"
 
 import{TV_SERIES,UPCOMING,MOVIES,SINGLE_SHOW,TAB_LABELS} from "../data/constants"
 
@@ -16,7 +18,9 @@ const store = configureStore({
     [TV_SERIES]: tvReducer,
     [SINGLE_SHOW]: singleShowReducer,
     [TAB_LABELS]: tabTitleReducer,
-    favorites: favoritesReducer,
+    "moviesGenre": moviesGenreReducer,
+    "seriesGenre": seriesGenreReducer,
+    "favorites": favoritesReducer,
   },
 });
 

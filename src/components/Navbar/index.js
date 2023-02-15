@@ -151,7 +151,7 @@ function Navbar({ navbarTitles }) {
               <Button
                 key={page}
                 onClick={handleOpenMenuPage}
-                sx={{ my: 2, color: "white", display: "block" }}
+                sx={{ my: 2, color: "#f9f9f9", display: "block" }}
               >
                 {page}
               </Button>
@@ -162,8 +162,8 @@ function Navbar({ navbarTitles }) {
               <IconButton
                 onClick={handleOnClickButtonSearchBar}
                 sx={{
-                  stroke: "white",
-                  color: "white",
+                  stroke: "#f9f9f9",
+                  color: "#f9f9f9",
                   strokeWidth: "1",
                   pr: 0,
                   display: { xs: "none", md: "inline" },

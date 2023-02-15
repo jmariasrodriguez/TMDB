@@ -1,14 +1,14 @@
 import React from 'react'
-import CardCarouel from './CardCarouel'
+import CustomCarouselCard from './CustomCarouselCard'
 import { CarouselContainer } from './styleCarousel'
 
 
-const SectionCarousel = ({carouselShows, genres}) => {
+const SectionCarousel = ({items}) => {
       
     return (
         <CarouselContainer >
             {
-                carouselShows.map( (show, index) => <CardCarouel key={index} show={show} genres={genres} /> )
+                items.map( (item, index) => <CustomCarouselCard key={index} item={item}  /> )
             }
         </CarouselContainer>
     )

@@ -6,28 +6,18 @@ import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea, IconButton } from "@mui/material";
 import { ContainerCard, ContentCard, BoxRaiting } from "../Favorites/styleSectionPreview";
-import { isMovie,oneGenre } from "../../utils";
+import {oneGenre } from "../../utils";
+import {getParsedITem} from "../../utils/formatters"
 import { ImageBox, TextBox } from "../SingleView/styleSingleView";
 import { SINGLE_SHOW } from "../../data/constants";
 import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function CardFavoriteItem({ show, genres }) {
+export default function CardFavoriteItem({ show}) {
   const navigate = useNavigate();
 
-// let genre 
-// if (!show.genre_ids){ genre= "none"
-// }else{
-//   genre = oneGenre(genres,show)
-// }
-
-//let genre = oneGenre(genres, show);
-
-
-
-
-  const movieTv = isMovie(show);
+  const movieTv = getParsedITem(show);
   const [isClicked, setIsClicked] = React.useState(false);
 
   const handleClick = () => {
@@ -65,14 +55,14 @@ export default function CardFavoriteItem({ show, genres }) {
     <Box>
           <TextBox>
             <Box display={"flex"} sx={{flexDirection: "row", alignItems:"center"}}>
-          <Typography variant="h3" sx={{color:"white", fontWeight:"bold"}} >
+          <Typography variant="h3" sx={{color:"#f9f9f9", fontWeight:"bold"}} >
                 {movieTv.name}, {movieTv.year}
               </Typography>
               <IconButton aria-label="delete" color="primary" onClick={handleClickDelete} disabled={isClicked}><DeleteIcon sx={{ marginLeft: "16px"}} />
                 </IconButton>
             </Box>
-              <Typography variant="h5" sx={{color:"white"}}>
-                {movieTv.showType}, {}
+              <Typography variant="h5" sx={{color:"#f9f9f9"}}>
+                {movieTv.showType}, {show.genres? show.genres[0].name: null}
               </Typography>
               <Typography
                 variant="body1"
