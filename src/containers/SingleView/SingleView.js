@@ -51,7 +51,6 @@ const SingleView = () => {
     [SINGLE_SHOW]: useSelector((state) => state[SINGLE_SHOW]),
   };
 
-
   return (
     <Box>
       {sectionData[SINGLE_SHOW].loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
