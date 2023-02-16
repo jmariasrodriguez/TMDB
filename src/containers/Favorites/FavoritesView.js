@@ -14,6 +14,7 @@ import TabsSectionPreview from "../../components/Section-Preview/SectionHeader/T
 import SectionList from "../../components/Section-Preview/SectionList";
 import {
   FAVORITE_TAB_TITLE,
+  MY_FAVORITES,
   PREVIEW_SECTION_TITLE,
   TABS_FAVORITES,
 } from "../../data/constants";
@@ -24,7 +25,7 @@ import { onSetFavorites, setFavoritesSuccess } from "../../state/favorites";
 
 const FavoritesView = () => {
   const sectionData = {
-    favorites: useSelector((state) => state.favorites),
+    [MY_FAVORITES]: useSelector((state) => state[MY_FAVORITES]),
   };
   const dispatch = useDispatch();
   
@@ -33,14 +34,11 @@ const FavoritesView = () => {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    dispatch(onSetFavorites());
-    dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
-    //setFavorites(JSON.parse(localStorage.getItem("data")))
-    setData(sectionData.favorites.data);
+    setData(sectionData[MY_FAVORITES].data);
   }, []);
   
-  const series = sectionData.favorites.data.filter( (item) => item.first_air_date);
-  const movies = sectionData.favorites.data.filter((item) => item.release_date);
+  const series = sectionData[MY_FAVORITES].data.filter( (item) => item.first_air_date);
+  const movies = sectionData[MY_FAVORITES].data.filter((item) => item.release_date);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -49,7 +47,7 @@ const FavoritesView = () => {
     } else if (event.target.innerText === "TV SERIES") {
       setData(series);
     } else {
-      setData(sectionData.favorites.data);
+      setData(sectionData[MY_FAVORITES].data);
     }
   };
 
@@ -109,9 +107,8 @@ const FavoritesView = () => {
                   </TabContext>
                 </Box>
               </ContainerTitleTabs>
-
-              {sectionData.favorites.loading && (<Box sx={{ display: "flex" }}><CircularProgress /></Box>)}
-               {/* {error && <Alert variant="filled" severity="error">{error}</Alert>} */}
+              {sectionData[MY_FAVORITES].loading && (<Box sx={{ display: "flex" }}><CircularProgress /></Box>)}
+               {sectionData[MY_FAVORITES].error && <Alert variant="filled" severity="error">{sectionData[MY_FAVORITES].error}</Alert>}
               <SectionListFavs data={data}/>
           </ContainerSectionPreview>
         </Box>

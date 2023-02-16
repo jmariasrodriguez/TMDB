@@ -50,10 +50,10 @@ const SectionListFavs = ({ data}) => {
   return (
     <Box>
     <ContainerSectionListOnePage  spacing={0}>
-      {data?.map((show, index) => {
+      {data?.map((item, index) => {
         return (
           <Grid item>
-            <CardFavoriteItem key={index} show={show} index={index}/>
+            <CardFavoriteItem key={index} item={item} index={index}/>
           </Grid>
         );
       })}

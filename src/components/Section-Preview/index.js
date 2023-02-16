@@ -9,14 +9,9 @@ import {
 } from "./styleSectionPreview";
 import { Alert, Box, CircularProgress } from "@mui/material";
 import { useSelector } from "react-redux";
+import { MOVIES_GENRES, TV_SERIES_GENRES } from "../../data/constants";
 
 const SectionPreview = ({ previewSectionTitle, tabs, data, loading, error}) => {
-
-  const sectionData = {
-    moviesGenre: useSelector((state) => state.moviesGenre),
-    seriesGenre: useSelector((state) => state.seriesGenre),
-  };
- 
   
   return (
     <ContainerSectionPreview>
@@ -27,11 +22,9 @@ const SectionPreview = ({ previewSectionTitle, tabs, data, loading, error}) => {
             tabs={tabs}
           />
         </ContainerTitleTabs>
-
-        {sectionData.moviesGenre.loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
         {loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
         {error && <Alert variant="filled" severity="error">{error}</Alert>}
-        {sectionData.seriesGenre.loading ? <Box sx={{ display: 'flex' }}><CircularProgress /></Box> : <SectionList data={data}/>} 
+        <SectionList data={data}/>
         
     </ContainerSectionPreview>
   );

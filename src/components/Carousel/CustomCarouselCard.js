@@ -7,21 +7,16 @@ import { oneGenre } from "../../utils";
 import { getParsedITem } from "../../utils/formatters";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { MOVIES_GENRES } from "../../data/constants";
 
 export default function CustomCarouselCard({ item}) {
   const movieTv = getParsedITem(item);
 
 const sectionData = {
-  moviesGenre: useSelector((state) => state.moviesGenre),
-  seriesGenre: useSelector((state) => state.seriesGenre),
+  [MOVIES_GENRES]: useSelector((state) => state[MOVIES_GENRES]),
 };
 
-let genre
-if(movieTv === "Movie"){
-   genre = sectionData.moviesGenre
-}else{
-  genre = sectionData.moviesGenre
-}
+let genre = sectionData[MOVIES_GENRES]
 
   const redirect = item.first_air_date ? `/tv/${item.id}` : `/movie/${item.id}`;
 
@@ -47,8 +42,7 @@ if(movieTv === "Movie"){
           </Typography>
 
           <Typography {...TypoProps}>
-            {movieTv.year}, 
-            {item.genre_ids && sectionData.moviesGenre.data.length > 0 && sectionData.moviesGenre.data.length > 0 ? oneGenre(genre.data, item) : null}
+            {movieTv.year}, {item.genre_ids && sectionData[MOVIES_GENRES].data.length > 0 ? oneGenre(genre.data, item) : null}
           </Typography>
 
           <Typography

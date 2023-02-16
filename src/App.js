@@ -14,6 +14,7 @@ import FavoritesView from "./containers/Favorites/FavoritesView";
 import { useDispatch } from "react-redux";
 import { onSetMoviesGenre, setMoviesGenresFail, setMoviesGenresSuccess } from "./state/moviesGenre";
 import { onSetSeriesGenre, setSeriesGenreFail, setSeriesGenreSuccess } from "./state/seriesGenre";
+import { onSetFavorites, setFavoritesSuccess } from "./state/favorites";
 
 function App() {
   
@@ -44,6 +45,12 @@ function App() {
         dispatch(setMoviesGenresFail(err.message || "Sorry, something went wrong."));
       }); 
     }, [])
+
+    useEffect(() => {
+      dispatch(onSetFavorites())
+      dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
+    }, [])
+    
     
 
   return (

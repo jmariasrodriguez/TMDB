@@ -9,21 +9,22 @@ import { ContainerCard, ContentCard, BoxRaiting } from "../styleSectionPreview";
 import {oneGenre } from "../../../utils";
 import {getParsedITem} from "../../../utils/formatters"
 import { useSelector } from "react-redux";
+import { MOVIES_GENRES, TV_SERIES_GENRES } from "../../../data/constants";
 
 
 export default function CardItem({ item}) {
   const movieTv = getParsedITem(item);
 
   const sectionData = {
-    moviesGenre: useSelector((state) => state.moviesGenre),
-    seriesGenre: useSelector((state) => state.seriesGenre),
+  [MOVIES_GENRES]: useSelector((state) => state[MOVIES_GENRES]),
+  [TV_SERIES_GENRES]: useSelector((state) => state[TV_SERIES_GENRES]),
   };
 
   let genre
-  if(movieTv === "Movie"){
-     genre = sectionData.moviesGenre
+  if(movieTv.showType === "Movie"){
+     genre = sectionData[MOVIES_GENRES]
   }else{
-    genre = sectionData.moviesGenre
+    genre = sectionData[TV_SERIES_GENRES]
   }
 
   const navigate = useNavigate();
@@ -61,8 +62,7 @@ export default function CardItem({ item}) {
             />
           </BoxRaiting>
           <Typography textColor="#f9f9f9" fontSize="sm" paddingTop={"4px"}>
-            {movieTv.year},
-            {item.genre_ids && sectionData.moviesGenre.data.length > 0 && sectionData.moviesGenre.data.length > 0 ? oneGenre(genre.data, item) : null}
+            {movieTv.year}, {item.genre_ids && sectionData[MOVIES_GENRES].data.length > 0 && sectionData[MOVIES_GENRES].data.length > 0 ? oneGenre(genre.data, item) : null}
           </Typography>
           <Typography level="h6" fontSize="md" textColor="#f9f9f9" marginTop={1}>
             {movieTv.name}

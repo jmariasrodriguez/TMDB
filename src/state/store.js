@@ -9,7 +9,7 @@ import favoritesReducer from "./favorites"
 import moviesGenreReducer from "./moviesGenre"
 import seriesGenreReducer from "./seriesGenre"
 
-import{TV_SERIES,UPCOMING,MOVIES,SINGLE_SHOW,TAB_LABELS} from "../data/constants"
+import{TV_SERIES,UPCOMING,MOVIES,SINGLE_SHOW,TAB_LABELS, MY_FAVORITES, MOVIES_GENRES, TV_SERIES_GENRES} from "../data/constants"
 
 const store = configureStore({
   reducer: {
@@ -18,9 +18,9 @@ const store = configureStore({
     [TV_SERIES]: tvReducer,
     [SINGLE_SHOW]: singleShowReducer,
     [TAB_LABELS]: tabTitleReducer,
-    "moviesGenre": moviesGenreReducer,
-    "seriesGenre": seriesGenreReducer,
-    "favorites": favoritesReducer,
+    [MOVIES_GENRES]: moviesGenreReducer,
+    [TV_SERIES_GENRES]: seriesGenreReducer,
+    [MY_FAVORITES]: favoritesReducer,
   },
 });
 

@@ -15,7 +15,7 @@ const SectionCast = ({ data, Title }) => {
       <Typography variant="h4" sx={{ color: "#f9f9f9", margin: "4px", marginTop:"16px"}}>
         {Title}
       </Typography>
-      <ContainerSectionList container sx={{}} spacing={3}>
+      <ContainerSectionList container spacing={3}>
         {dataActors.map((item) => {
           return (
             <Grid item>

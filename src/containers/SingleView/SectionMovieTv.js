@@ -57,7 +57,7 @@ return (
             />
           </ImageBox>
           <TextBox>
-            <ThemeProvider theme={theme}>
+            {/* <ThemeProvider theme={theme}> */}
               <Typography variant="h3" color="#f9f9f9">
                 {movieTv.name}, {movieTv.year}
               </Typography>
@@ -104,7 +104,7 @@ return (
                 {dataTable[SINGLE_SHOW].overview}
                 
               </Typography>
-            </ThemeProvider>
+            {/* </ThemeProvider> */}
           </TextBox>
         </BoxCardContent>
       </ContainerCard>
