@@ -1,31 +1,36 @@
 import * as React from "react";
-import CardCover from "@mui/joy/CardCover";
 import Typography from "@mui/joy/Typography";
-import Rating from "@mui/material/Rating";
-import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
 import { CardActionArea, IconButton } from "@mui/material";
-import { ContainerCard, ContentCard, BoxRaiting } from "../Favorites/styleSectionPreview";
-import {oneGenre } from "../../utils";
 import {getParsedITem} from "../../utils/formatters"
 import { ImageBox, TextBox } from "../SingleView/styleSingleView";
-import { SINGLE_SHOW } from "../../data/constants";
 import { Box } from "@mui/system";
-import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import DeleteIcon from '@mui/icons-material/Delete';
+import { onSetFavorites, setFavoritesSuccess } from "../../state/favorites";
+import { useEffect } from "react";
 
 export default function CardFavoriteItem({ item}) {
+  
   const navigate = useNavigate();
-
+  
   const movieTv = getParsedITem(item);
   const [isClicked, setIsClicked] = React.useState(false);
-
+  
   const handleClick = () => {
     item.first_air_date
-      ? navigate(`/tv/${item.id}`)
-      : navigate(`/movie/${item.id}`);
-      window.location.reload();
+    ? navigate(`/tv/${item.id}`)
+    : navigate(`/movie/${item.id}`);
+    window.location.reload();
   };
+  
+  const dispatch = useDispatch()
+  
+  useEffect(() => {
+    dispatch(onSetFavorites())
+    dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
+  }, [isClicked])
+
 
   const handleClickDelete = () =>{
     let idToDelete= item.id
@@ -33,7 +38,10 @@ export default function CardFavoriteItem({ item}) {
     let oldData = JSON.parse(localStorage.getItem("data"))
     let newData = oldData.filter((item) => item.id !== idToDelete )
     localStorage.setItem("data", JSON.stringify(newData))
+    
   }
+  
+  
   
   return (
    <>
@@ -47,7 +55,7 @@ export default function CardFavoriteItem({ item}) {
             <img
               width="100%"
               src={`https://www.themoviedb.org/t/p/original/${item.poster_path}`}
-              img
+              alt={item.poster_path}
             />
           </ImageBox>
         </CardActionArea>

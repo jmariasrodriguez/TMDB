@@ -12,7 +12,6 @@ import {
 import SectionCast from "./SectionCast";
 import SectionMovieTv from "./SectionMovieTv";
 import SectionRecomendations from "./SectionRecomendations";
-import { ContainterSingleView } from "./styleSingleView";
 
 const SingleView = () => {
   const { id } = useParams();

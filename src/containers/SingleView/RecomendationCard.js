@@ -21,7 +21,7 @@ const handleClick = () => {
   };
 
   return (
-    <Card sx={{ height: "300px", width: "150px", paddingBottom:"36px" }}>
+    <Card sx={{ height: "300px", width: "150px", padding: "0px",backgroundColor: "#22214F" }}>
         <CardActionArea sx={{position:"relative", height:"100%"}} onClick={handleClick}>
       <CardMedia
         component="img"
@@ -31,9 +31,8 @@ const handleClick = () => {
       />
       <CardContent
         sx={{
-          backgroundColor: "#22214F",
           color: "#f9f9f9",
-          height: "80px",
+          height: "70px",
           paddingTop: "4px",
           pr: "8px",
           pl: "8px",
@@ -41,10 +40,9 @@ const handleClick = () => {
       >
         <ThemeProvider theme={theme}>
           <Typography
-            
-            variant="subtitle1"
-            textColor="#f9f9f9"
-            fontWeight="600"
+          variant="subtitle2"
+          textColor="#f9f9f9"
+          fontWeight="600"
           >
             {item.media_type === "tv"? item.original_name : item.title}
           </Typography>
