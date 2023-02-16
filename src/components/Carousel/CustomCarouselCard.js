@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import { CarouselCard, ContentCarouselCard } from "./styleCarousel";
 import { oneGenre } from "../../utils";
 import { getParsedITem } from "../../utils/formatters";
-import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { MOVIES_GENRES } from "../../data/constants";
 

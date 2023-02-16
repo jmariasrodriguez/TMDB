@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Pagination } from "@mui/material";
+import { Grid } from "@mui/material";
 import CardItem from "./CardItem";
 import { ContainerSectionList, ContainerSectionListOnePage } from "../styleSectionPreview";
 import { useLocation, useMatch } from "react-router-dom";
@@ -9,6 +9,7 @@ import { onSetMovies, setMoviesFail, setMoviesSuccess } from "../../../state/mov
 import { API_URL, TAB_LABELS } from "../../../data/constants";
 import { useDispatch, useSelector } from "react-redux";
 import { onSetTv, setTvFail, setTvSuccess } from "../../../state/tv";
+import Pagination from '@mui/material/Pagination';
 
 const SectionList = ({ data }) => {
   const match = useMatch('/')
@@ -19,14 +20,14 @@ const SectionList = ({ data }) => {
     [TAB_LABELS]: useSelector((state) => state[TAB_LABELS])
   }
   let searchValue = useLocation().search.split("=")[1]
-  const [page, setPage] = useState(1)
-  const [totalPages, setTotalPages] = useState(10)
 
+  const [totalPages, setTotalPages] = useState(10)
+  
   useEffect(() => {
     if (matchTv){  
       axios
         .get(
-          `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${page}`
+          `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
         )
         .then((moviesArray) => {
           setTotalPages(moviesArray.data.total_pages)
@@ -37,7 +38,7 @@ const SectionList = ({ data }) => {
       }else if (matchMovies){
           axios
             .get(
-              `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${page}`
+              `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
             )
             .then((moviesArray) => {
               setTotalPages(moviesArray.data.total_pages)
@@ -48,7 +49,7 @@ const SectionList = ({ data }) => {
       }else{
         axios
           .get(
-            `${API_URL.beginningPath}search/multi?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&query=${searchValue}&page=${page}&include_adult=false`
+            `${API_URL.beginningPath}search/multi?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&query=${searchValue}&page=1&include_adult=false`
           )
           .then((moviesArray) => {
             setTotalPages(moviesArray.data.total_pages)
@@ -60,14 +61,12 @@ const SectionList = ({ data }) => {
   }, [])
   
 
-
-  const handleChange = (e)=>{
-    setPage(e.target.outerText)
+  const handleChange = (event, value)=>{
     if (matchTv){  
       dispatch(onSetTv());
       axios
         .get(
-          `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${page}`
+          `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${event.target.textContent}`
         )
         .then((moviesArray) => {
           dispatch(setTvSuccess(moviesArray.data.results));
@@ -79,7 +78,7 @@ const SectionList = ({ data }) => {
         dispatch(onSetMovies());
           axios
             .get(
-              `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${page}`
+              `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${event.target.textContent}`
             )
             .then((moviesArray) => {
               dispatch(setMoviesSuccess(moviesArray.data.results));
@@ -87,11 +86,13 @@ const SectionList = ({ data }) => {
             .catch((err) => {
               setMoviesFail(err.message || "Sorry, something went wrong.");
             })
-      }else{
+      }
+      else{
+        //searchView
         dispatch(onSetMovies());
         axios
           .get(
-            `${API_URL.beginningPath}search/multi?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&query=${searchValue}&page=${page}&include_adult=false`
+            `${API_URL.beginningPath}search/multi?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&query=${searchValue}&page=${event.target.textContent}&include_adult=false`
           )
           .then((moviesArray) => {
             dispatch(setMoviesSuccess(moviesArray.data.results));
@@ -127,9 +128,8 @@ const SectionList = ({ data }) => {
     </ContainerSectionListOnePage>
     <Box sx={{ margin:"auto", p:"24px", display:"flex", justifyContent:"center"}}>
       <Stack  spacing={2}>
-        <Pagination count={totalPages}  onChange={handleChange} variant="outlined" shape="rounded"  color="primary" /></Stack>
+        <Pagination count={totalPages} onChange={handleChange} variant="outlined" shape="rounded"  color="primary" /></Stack>
     </Box>
-
     </Box>
     )
 }

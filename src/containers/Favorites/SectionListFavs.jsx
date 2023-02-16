@@ -1,21 +1,16 @@
 import { Box, Grid, Pagination, Stack } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import CardItem from '../../components/Section-Preview/SectionList/CardItem';
 import { ContainerSectionListOnePage } from '../../components/Section-Preview/styleSectionPreview';
-import { API_URL, TAB_LABELS } from '../../data/constants';
+import { API_URL } from '../../data/constants';
 import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies';
-import { onSetTv, setTvFail, setTvSuccess } from '../../state/tv';
 import CardFavoriteItem from './CardFavoriteItem';
 
 const SectionListFavs = ({ data}) => {
   let searchValue = useLocation().search.split("=")[1]
     const dispatch = useDispatch();
-    const dataTable ={
-    [TAB_LABELS]: useSelector((state) => state[TAB_LABELS])
-    }
     
     const [page, setPage] = useState(1)
     const [totalPages, setTotalPages] = useState(10)

@@ -11,7 +11,7 @@ export default function ActorCard({ item }) {
   theme = responsiveFontSizes(theme);
 
   return (
-    <Card sx={{ height: "300px", width: "150px", padding: "0px" }}>
+    <Card sx={{ height: "300px", width: "150px", padding: "0px",backgroundColor: "#22214F"}}>
       <CardMedia
         component="img"
         image={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
@@ -19,13 +19,12 @@ export default function ActorCard({ item }) {
         />
       <CardContent
         sx={{
-          backgroundColor: "#22214F",
           color: "#f9f9f9",
           height: "70px",
           paddingTop: "4px",
           pr: "8px",
           pl: "8px",
-          marginBottom: "4px",
+          //marginBottom: "4px",
         }}
         >
         <ThemeProvider theme={theme}>

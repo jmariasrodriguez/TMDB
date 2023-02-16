@@ -3,7 +3,6 @@ import React from "react";
 import {
   ContainerSectionList,
   ContainerSectionPreview,
-  ContainerSectionPreview2,
 } from "../../components/Section-Preview/styleSectionPreview";
 import RecomendationCard from "./RecomendationCard";
 

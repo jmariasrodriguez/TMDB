@@ -1,4 +1,4 @@
-import { Grid, IconButton, SvgIcon, Typography } from "@mui/material";
+import { Box, IconButton, SvgIcon, Typography } from "@mui/material";
 import React from "react";
 import { ReactComponent as tmdbIcon } from "../../assets/tmdb.svg";
 import GitHubIcon from "@mui/icons-material/GitHub";
@@ -23,8 +23,8 @@ const Footer = () => {
 
   return (
     <ContainerFooter container>
-      <ContainerFooterSections sx={{alignItems:{xs:"center", sm:"center"}}} container>
-       <Grid item>
+      <ContainerFooterSections sx={{flexDirection:{xs:"column", sm:"row"}}} container>
+       <Box item>
         <IconImage item sx={{ maxWidth: "15%" }}>
           <SvgIcon
             component={tmdbIcon}
@@ -32,14 +32,14 @@ const Footer = () => {
             style={{ width: "75px", height: "75px" }}
           />
         </IconImage>
-       </Grid>
+       </Box>
 
-        <Grid item>
-          <Typography variant="body1" fontWeight="bold" color="#f9f9f9">
+        <Box item>
+          <Typography variant="body2" fontWeight="500" color="#f9f9f9" align="center">
             This product uses the TMDB API but is not endorsed or certify by
             TMDB
           </Typography>
-        </Grid>
+        </Box>
       </ContainerFooterSections>
 
       <ContainerFooterSections>

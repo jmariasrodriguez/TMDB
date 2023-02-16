@@ -1,35 +1,27 @@
-import { Box, fontWeight } from "@mui/system";
+import { Box } from "@mui/system";
 import React, { useEffect, useState } from "react";
 import Avatar from "@mui/material/Avatar";
-import IconButton from "@mui/material/IconButton";
 import { Alert, CircularProgress, Tab, Typography } from "@mui/material";
 import {
   ContainerSectionPreview,
-  ContainerSectionPreview2,
   ContainerTabsTitles,
   ContainerTitleTabs,
 } from "../../components/Section-Preview/styleSectionPreview";
 import TitleSectionPreview from "../../components/Section-Preview/SectionHeader/TitleSectionPreview";
-import TabsSectionPreview from "../../components/Section-Preview/SectionHeader/TabsSectionPreview";
-import SectionList from "../../components/Section-Preview/SectionList";
 import {
   FAVORITE_TAB_TITLE,
   MY_FAVORITES,
-  PREVIEW_SECTION_TITLE,
   TABS_FAVORITES,
 } from "../../data/constants";
-import { TabContext, TabList, TabPanel } from "@mui/lab";
+import { TabContext, TabList } from "@mui/lab";
 import SectionListFavs from "./SectionListFavs";
-import { useDispatch, useSelector } from "react-redux";
-import { onSetFavorites, setFavoritesSuccess } from "../../state/favorites";
+import { useSelector } from "react-redux";
 
 const FavoritesView = () => {
   const sectionData = {
     [MY_FAVORITES]: useSelector((state) => state[MY_FAVORITES]),
   };
-  const dispatch = useDispatch();
   
-  const [favorites, setFavorites] = useState([]);
   const [value, setValue] = useState(0);
   const [data, setData] = useState([]);
   
@@ -57,6 +49,7 @@ const FavoritesView = () => {
         flexDirection="column"
         margin="auto"
         maxWidth="1200px"
+        minHeight="700px"
       >
         <Box
           display="flex"

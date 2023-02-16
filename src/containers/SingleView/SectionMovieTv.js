@@ -1,14 +1,12 @@
-import { Alert, Box, CircularProgress, IconButton, Rating, Typography } from "@mui/material";
+import {  IconButton, Rating, Typography } from "@mui/material";
 import React, { useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useSelector } from "react-redux";
 import { SINGLE_SHOW, RATINGS_TEXT} from "../../data/constants";
-import { CardCover, ThemeProvider } from "@mui/joy";
+import { CardCover } from "@mui/joy";
 import { BoxRaiting } from "../../components/Section-Preview/styleSectionPreview";
-import { oneGenre, overviewLimit } from "../../utils";
 import {getParsedITem} from "../../utils/formatters"
 import StarIcon from "@mui/icons-material/Star";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
 import {
   BoxCardContent,
   ContainerCard,
@@ -22,9 +20,6 @@ const SectionMovieTv = ({loading, error, data }) => {
   };
   const movieTv = getParsedITem(dataTable[SINGLE_SHOW]);
   const [isClicked, setIsClicked] = useState(false);
-
-let theme = createTheme();
-theme = responsiveFontSizes(theme);
 
 const handleOnclick = ()=>{
   setIsClicked(true)
@@ -45,7 +40,7 @@ return (
         <CardCover sx={{ opacity: "0.4" }}>
           <img
             src={`https://www.themoviedb.org/t/p/original/${dataTable[SINGLE_SHOW].backdrop_path}`}
-            img
+            alt={dataTable[SINGLE_SHOW].backdrop_path}
           />
         </CardCover>
         <BoxCardContent>
@@ -53,11 +48,10 @@ return (
             <img
               width="100%"
               src={`https://www.themoviedb.org/t/p/original/${dataTable[SINGLE_SHOW].poster_path}`}
-              img
+              alt={dataTable[SINGLE_SHOW].backdrop_path}
             />
           </ImageBox>
           <TextBox>
-            {/* <ThemeProvider theme={theme}> */}
               <Typography variant="h3" color="#f9f9f9">
                 {movieTv.name}, {movieTv.year}
               </Typography>
@@ -104,7 +98,6 @@ return (
                 {dataTable[SINGLE_SHOW].overview}
                 
               </Typography>
-            {/* </ThemeProvider> */}
           </TextBox>
         </BoxCardContent>
       </ContainerCard>
