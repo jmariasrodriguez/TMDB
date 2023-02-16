@@ -54,13 +54,13 @@ const SingleView = () => {
 
 
   return (
-    <ContainterSingleView>
+    <Box>
       {sectionData[SINGLE_SHOW].loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
       {sectionData[SINGLE_SHOW].error && <Alert variant="filled" severity="error">{sectionData[SINGLE_SHOW].error}</Alert>}
       <SectionMovieTv/>
       <SectionCast Title={SINGLE_SHOW_VIEW_TITLES.cast} data={casting} />
       <SectionRecomendations Title={SINGLE_SHOW_VIEW_TITLES.recomendations} data={recomendations} />
-    </ContainterSingleView>
+    </Box>
   );
 };
 

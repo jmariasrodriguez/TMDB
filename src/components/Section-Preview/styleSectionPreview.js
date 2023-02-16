@@ -46,11 +46,6 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
   alignItems: "flex-start",
   flexWrap: "nowrap",
   overflow: "auto",
-  
-  [theme.breakpoints.down('sm')]: {
-    margin:"0px",
-    maxWidth:"100%",
-  },
 
   "&::-webkit-scrollbar": {
     width: "20px",
@@ -66,6 +61,14 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
   },
   "&::-webkit-scrollbar-thumb:hover": {
     background: "#00b3ff",
+  },
+  
+  [theme.breakpoints.down('sm')]: {
+    margin:"0px",
+    maxWidth:"100%",
+    "&::-webkit-scrollbar": {
+      display:"none"
+    },
   },
 }));
 

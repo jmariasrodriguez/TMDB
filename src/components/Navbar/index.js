@@ -15,7 +15,7 @@ import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
 import { styled, alpha } from "@mui/material/styles";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -183,11 +183,11 @@ function Navbar({ navbarTitles }) {
 
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
-              <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <Link to={`/userFavorites`}>
                 <Avatar alt="Remy Sharp" sx={{ bgcolor: "#27265B" }}>
                   U
                 </Avatar>
-              </IconButton>
+              </Link>
             </Tooltip>
           </Box>
         </Toolbar>

@@ -23,7 +23,8 @@ const Footer = () => {
 
   return (
     <ContainerFooter container>
-      <ContainerFooterSections container>
+      <ContainerFooterSections sx={{alignItems:{xs:"center", sm:"center"}}} container>
+       <Grid item>
         <IconImage item sx={{ maxWidth: "15%" }}>
           <SvgIcon
             component={tmdbIcon}
@@ -31,6 +32,8 @@ const Footer = () => {
             style={{ width: "75px", height: "75px" }}
           />
         </IconImage>
+       </Grid>
+
         <Grid item>
           <Typography variant="body1" fontWeight="bold" color="#f9f9f9">
             This product uses the TMDB API but is not endorsed or certify by

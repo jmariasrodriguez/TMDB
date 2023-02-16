@@ -14,24 +14,24 @@ import { Box } from "@mui/system";
 import { useSelector } from "react-redux";
 import DeleteIcon from '@mui/icons-material/Delete';
 
-export default function CardFavoriteItem({ show}) {
+export default function CardFavoriteItem({ item}) {
   const navigate = useNavigate();
 
-  const movieTv = getParsedITem(show);
+  const movieTv = getParsedITem(item);
   const [isClicked, setIsClicked] = React.useState(false);
 
   const handleClick = () => {
-    show.first_air_date
-      ? navigate(`/tv/${show.id}`)
-      : navigate(`/movie/${show.id}`);
+    item.first_air_date
+      ? navigate(`/tv/${item.id}`)
+      : navigate(`/movie/${item.id}`);
       window.location.reload();
   };
 
   const handleClickDelete = () =>{
-    let idToDelete= show.id
+    let idToDelete= item.id
     setIsClicked(true)
     let oldData = JSON.parse(localStorage.getItem("data"))
-    let newData = oldData.filter((show) => show.id !== idToDelete )
+    let newData = oldData.filter((item) => item.id !== idToDelete )
     localStorage.setItem("data", JSON.stringify(newData))
   }
   
@@ -46,7 +46,7 @@ export default function CardFavoriteItem({ show}) {
   marginTop: "30px", display: { xs: "flex" } }}>
             <img
               width="100%"
-              src={`https://www.themoviedb.org/t/p/original/${show.poster_path}`}
+              src={`https://www.themoviedb.org/t/p/original/${item.poster_path}`}
               img
             />
           </ImageBox>
@@ -62,13 +62,13 @@ export default function CardFavoriteItem({ show}) {
                 </IconButton>
             </Box>
               <Typography variant="h5" sx={{color:"#f9f9f9"}}>
-                {movieTv.showType}, {show.genres? show.genres[0].name: null}
+                {movieTv.showType}, {item.genres? item.genres[0].name: null}
               </Typography>
               <Typography
                 variant="body1"
                 sx={{marginRight: "20%", marginTop:"1%", color:"grey"}}
               >
-                {show.overview}
+                {item.overview}
               </Typography>
           </TextBox>
     </Box>
