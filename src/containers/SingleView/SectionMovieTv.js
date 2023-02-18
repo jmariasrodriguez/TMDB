@@ -1,7 +1,7 @@
 import {  IconButton, Rating, Typography } from "@mui/material";
 import React, { useState } from "react";
 import FavoriteIcon from "@mui/icons-material/Favorite";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { SINGLE_SHOW, RATINGS_TEXT} from "../../data/constants";
 import { CardCover } from "@mui/joy";
 import { BoxRaiting } from "../../components/Section-Preview/styleSectionPreview";
@@ -13,6 +13,7 @@ import {
   ImageBox,
   TextBox,
 } from "./styleSingleView";
+import { onSetFavorites, setFavoritesSuccess } from "../../state/favorites";
 
 const SectionMovieTv = ({loading, error, data }) => {
   const dataTable = {
@@ -21,17 +22,32 @@ const SectionMovieTv = ({loading, error, data }) => {
   const movieTv = getParsedITem(dataTable[SINGLE_SHOW]);
   const [isClicked, setIsClicked] = useState(false);
 
+  const dispatch = useDispatch()
+
 const handleOnclick = ()=>{
   setIsClicked(true)
   let newData = dataTable[SINGLE_SHOW]
+  //first adding (create cookie)
   if(localStorage.getItem("data") == null){
     localStorage.setItem("data","[]")
   }
-  
+
   let oldData = JSON.parse(localStorage.getItem("data"))
-  oldData.push(newData)
+  
+  if(oldData.length === 0){
+    oldData.push(newData)
+  }else{
+    //avoid duplicates
+    let ids = oldData.filter(item => item.id === newData.id)
+    if(ids.length === 0){
+      oldData.push(newData)
+    }
+  }
   
   localStorage.setItem("data", JSON.stringify(oldData))
+  
+  dispatch(onSetFavorites())
+  dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
 }
 
 return (

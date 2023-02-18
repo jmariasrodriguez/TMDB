@@ -73,7 +73,8 @@ function Navbar({ navbarTitles }) {
   };
 
   const handleKeyPressInputSearchBar = (e) => {
-    if (e.code === "Enter") {
+    console.log(e)
+    if (e.keyCode === 13) {
       const encoded = encodeURI(searchInput);
       navigate(`/search/moviesTv?str=${encoded}`);
       window.location.reload();
