@@ -27,10 +27,6 @@ const SectionMovieTv = ({loading, error, data }) => {
 const handleOnclick = ()=>{
   setIsClicked(true)
   let newData = dataTable[SINGLE_SHOW]
-  //first adding (create cookie)
-  if(localStorage.getItem("data") == null){
-    localStorage.setItem("data","[]")
-  }
 
   let oldData = JSON.parse(localStorage.getItem("data"))
   

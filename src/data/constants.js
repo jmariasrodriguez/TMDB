@@ -20,6 +20,7 @@ export const SINGLE_SHOW = "singleShow"
 export const MY_FAVORITES = "favorites"
 export const MOVIES_GENRES = "moviesGenre"
 export const TV_SERIES_GENRES = "seriesGenre"
+export const USER_IMAGE = "userImage"
 
 
 export const FAVORITE_TAB_TITLE ={
