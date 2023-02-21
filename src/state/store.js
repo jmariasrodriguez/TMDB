@@ -8,8 +8,9 @@ import singleShowReducer from "./singleShow"
 import favoritesReducer from "./favorites"
 import moviesGenreReducer from "./moviesGenre"
 import seriesGenreReducer from "./seriesGenre"
+import userImageReducer from "./userImage"
 
-import{TV_SERIES,UPCOMING,MOVIES,SINGLE_SHOW,TAB_LABELS, MY_FAVORITES, MOVIES_GENRES, TV_SERIES_GENRES} from "../data/constants"
+import{TV_SERIES,UPCOMING,MOVIES,SINGLE_SHOW,TAB_LABELS, MY_FAVORITES, MOVIES_GENRES, TV_SERIES_GENRES, USER_IMAGE} from "../data/constants"
 
 const store = configureStore({
   reducer: {
@@ -21,6 +22,7 @@ const store = configureStore({
     [MOVIES_GENRES]: moviesGenreReducer,
     [TV_SERIES_GENRES]: seriesGenreReducer,
     [MY_FAVORITES]: favoritesReducer,
+    [USER_IMAGE]: userImageReducer,
   },
 });
 
