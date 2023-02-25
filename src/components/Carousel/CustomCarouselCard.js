@@ -1,4 +1,3 @@
-import * as React from "react";
 import CardCover from "@mui/joy/CardCover";
 import Typography from "@mui/joy/Typography";
 import { Link } from "react-router-dom";
@@ -9,13 +8,14 @@ import { useSelector } from "react-redux";
 import { MOVIES_GENRES } from "../../data/constants";
 
 export default function CustomCarouselCard({ item}) {
+
   const movieTv = getParsedITem(item);
 
-const sectionData = {
-  [MOVIES_GENRES]: useSelector((state) => state[MOVIES_GENRES]),
-};
+  const sectionData = {
+    [MOVIES_GENRES]: useSelector((state) => state[MOVIES_GENRES]),
+  };
 
-let genre = sectionData[MOVIES_GENRES]
+  let genre = sectionData[MOVIES_GENRES]
 
   const redirect = item.first_air_date ? `/tv/${item.id}` : `/movie/${item.id}`;
 
@@ -45,11 +45,11 @@ let genre = sectionData[MOVIES_GENRES]
           </Typography>
 
           <Typography
-            sx={{ display: { xs: "none", md: "flex" } }}
+            sx={{ display: { xs: "none", lg: "flex" } }}
             {...TypoProps} 
             fontWeight="100"
           >
-            {item.overview}
+            {item.overview.substring(0,269) + " ..."}
           </Typography>
         </ContentCarouselCard>
       </CarouselCard>

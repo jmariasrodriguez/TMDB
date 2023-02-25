@@ -1,16 +1,11 @@
-import * as React from "react";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Typography from "@mui/material/Typography";
-import { createTheme, responsiveFontSizes } from "@mui/material/styles";
-import { ThemeProvider } from "@mui/joy";
 import { CardActionArea } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 export default function RecomendationCard({ item }) {
-  let theme = createTheme();
-  theme = responsiveFontSizes(theme);
   const navigate = useNavigate();
 
 const handleClick = () => {
@@ -38,7 +33,6 @@ const handleClick = () => {
           pl: "8px",
         }}
       >
-        <ThemeProvider theme={theme}>
           <Typography
           variant="subtitle2"
           textColor="#f9f9f9"
@@ -46,7 +40,6 @@ const handleClick = () => {
           >
             {item.media_type === "tv"? item.original_name : item.title}
           </Typography>
-        </ThemeProvider>
       </CardContent>
       </CardActionArea>
     </Card>

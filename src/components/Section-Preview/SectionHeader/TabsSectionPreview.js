@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
 import TabList from "@mui/lab/TabList";
-import TabPanel from "@mui/lab/TabPanel";
 import {
   onSetMovies,
   setMoviesFail,
@@ -29,10 +28,12 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
   }
 
   const handleChange = (event, newValue) => {
+    //Prepare the label and title label to be set as a state, that will be use to create the URL of the API in SectionPreview
     setValue(newValue);
     let titleLabel = previewSectionTitle;
     if (titleLabel === "Movies") {
       titleLabel = "movie";
+      
     }
     if (titleLabel === "TV Series") {
       titleLabel = "tv";
@@ -80,10 +81,9 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
     <Box>
       <TabContext value={value}>
         <ContainerTabsTitles>
-          <TabList onChange={handleChange} aria-label="lab API tabs example">
+          <TabList onChange={handleChange} aria-label="lab API tabs">
             {tabs?.map((tab, index) => {
-              
-                {if(tab.label){
+                if(tab.label){
                   return (<Tab
                     key={index}
                     label={tab.label}
@@ -93,7 +93,7 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
                 }
               else{
                 return null
-              }}
+              }
 
             })}
           </TabList>

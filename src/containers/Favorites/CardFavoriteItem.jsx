@@ -74,7 +74,7 @@ export default function CardFavoriteItem({ item}) {
               </Typography>
               <Typography
                 variant="body1"
-                sx={{marginRight: "20%", marginTop:"1%", color:"grey"}}
+                sx={{marginRight: "20%", marginTop:"1%", color:"#595858"}}
               >
                 {item.overview}
               </Typography>

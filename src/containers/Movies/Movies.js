@@ -12,7 +12,6 @@ const Movies = () => {
         [MOVIES]: useSelector((state) => state[MOVIES]),
       };
 
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,7 +30,7 @@ const Movies = () => {
 
   return (
     <Box>
-     <SectionMainTitle mainTitle={MAIN_TITLE.moviesView} />
+     <SectionMainTitle mainTitle={MAIN_TITLE.moviesView}/>
      <SectionPreview
           tabs={TABS[MOVIES]}
           previewSectionTitle={PREVIEW_SECTION_TITLE[MOVIES]}

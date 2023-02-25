@@ -15,40 +15,37 @@ import {
 } from "./styleSingleView";
 import { onSetFavorites, setFavoritesSuccess } from "../../state/favorites";
 
-const SectionMovieTv = ({loading, error, data }) => {
+const SectionMovieTv = () => {
   const dataTable = {
     [SINGLE_SHOW]: useSelector((state) => state[SINGLE_SHOW].data),
   };
   const movieTv = getParsedITem(dataTable[SINGLE_SHOW]);
   const [isClicked, setIsClicked] = useState(false);
-
   const dispatch = useDispatch()
 
-const handleOnclick = ()=>{
-  setIsClicked(true)
-  let newData = dataTable[SINGLE_SHOW]
-
-  let oldData = JSON.parse(localStorage.getItem("data"))
-  
-  if(oldData.length === 0){
-    oldData.push(newData)
-  }else{
-    //avoid duplicates
-    let ids = oldData.filter(item => item.id === newData.id)
-    if(ids.length === 0){
+  const handleOnclick = ()=>{
+    setIsClicked(true)
+    let newData = dataTable[SINGLE_SHOW]
+    let oldData = JSON.parse(localStorage.getItem("data"))
+    
+    if(oldData.length === 0){
       oldData.push(newData)
+    }else{
+      //avoid duplicates
+      let ids = oldData.filter(item => item.id === newData.id)
+      if(ids.length === 0){
+        oldData.push(newData)
+      }
     }
+    
+    localStorage.setItem("data", JSON.stringify(oldData))
+    dispatch(onSetFavorites())
+    dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
   }
-  
-  localStorage.setItem("data", JSON.stringify(oldData))
-  
-  dispatch(onSetFavorites())
-  dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
-}
 
 return (
   <>
-      <ContainerCard container sx={{}}>
+      <ContainerCard container>
         <CardCover sx={{ opacity: "0.4" }}>
           <img
             src={`https://www.themoviedb.org/t/p/original/${dataTable[SINGLE_SHOW].backdrop_path}`}
@@ -83,12 +80,7 @@ return (
                   value={movieTv.value}
                   readOnly
                   precision={0.5}
-                  emptyIcon={
-                    <StarIcon
-                      style={{ opacity: 0.3, color: "#f9f9f9" }}
-                      fontSize="inherit"
-                    />
-                  }
+                  emptyIcon={<StarIcon style={{ opacity: 0.3, color: "#f9f9f9" }} fontSize="inherit"/>}
                 ></Rating>
                 <Typography sx={{ ml: 1, color: "#f9f9f9", fontWeight: "bold" }}>
                   {RATINGS_TEXT[movieTv.value]}
@@ -107,8 +99,7 @@ return (
                 color="#f9f9f9"
                 sx={{ marginRight: "10%"}}
               >
-                {dataTable[SINGLE_SHOW].overview}
-                
+                {dataTable[SINGLE_SHOW].overview }  
               </Typography>
           </TextBox>
         </BoxCardContent>

@@ -1,4 +1,4 @@
-import { Box, Grid, Pagination, Stack } from '@mui/material';
+import { Box, Grid, Pagination, Stack, Typography } from '@mui/material';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux';
@@ -45,6 +45,7 @@ const SectionListFavs = ({ data}) => {
   return (
     <Box>
     <ContainerSectionListOnePage  spacing={0}>
+      {data.length === 0 && (<Typography variant="body1" sx={{color:"#f9f9f9", mt:"16px"}}>There are no items to show</Typography>)}
       {data?.map((item, index) => {
         return (
           <Grid item>

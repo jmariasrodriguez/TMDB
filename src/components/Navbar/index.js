@@ -1,4 +1,3 @@
-import * as React from "react";
 import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
@@ -7,64 +6,36 @@ import Typography from "@mui/material/Typography";
 import Menu from "@mui/material/Menu";
 import MenuIcon from "@mui/icons-material/Menu";
 import Container from "@mui/material/Container";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import LocalMoviesIcon from "@mui/icons-material/LocalMovies";
-import { styled, alpha } from "@mui/material/styles";
-import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
 import { Link, useNavigate } from "react-router-dom";
 import { USER_IMAGE } from "../../data/constants";
 import { useSelector } from "react-redux";
+import {Search,StyledInputBase} from "./styleNavbar"
+import { useState } from "react";
 import PersonIcon from '@mui/icons-material/Person';
+import Avatar from "@mui/material/Avatar";
 
-
-const Search = styled("div")(({ theme }) => ({
-  position: "relative",
-  borderRadius: theme.shape.borderRadius,
-  backgroundColor: alpha(theme.palette.common.white, 0.15),
-  "&:hover": {
-    backgroundColor: alpha(theme.palette.common.white, 0.25),
-  },
-  marginRight: theme.spacing(2),
-  marginLeft: 0,
-  width: "100%",
-  [theme.breakpoints.up("sm")]: {
-    marginLeft: theme.spacing(3),
-    width: "auto",
-  },
-}));
-
-const StyledInputBase = styled(InputBase)(({ theme }) => ({
-  color: "inherit",
-  "& .MuiInputBase-input": {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(0)})`,
-    transition: theme.transitions.create("width"),
-    width: "100%",
-    [theme.breakpoints.up("md")]: {
-      width: "20ch",
-    },
-  },
-}));
-
+ 
 function Navbar({ navbarTitles }) {
 
-  const dataTable = {
+  const sectionData = {
     [USER_IMAGE]: useSelector((state) => state[USER_IMAGE]),
   }
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
   const navigate = useNavigate();
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [searchInput, setSearchInput] = React.useState("");
-
+  
   const handleOpenNavMenu = (event) => {
+    // In device view open the menu with the tv series and movies buttons
     setAnchorElNav(event.currentTarget);
   };
 
   const handleOpenMenuPage = (e) => {
+    // Redirect to tv series or movies page
     const routeName = e.target.innerText.toLowerCase().split(" ")[0];
     navigate(`/${routeName}`);
   };
@@ -74,12 +45,14 @@ function Navbar({ navbarTitles }) {
   };
 
   const handleOnClickButtonSearchBar = (e) => {
+    // Redirect to the search page (Lens button)
     const encoded = encodeURI(searchInput);
     navigate(`/search/moviesTv?str=${encoded}`);
     setSearchInput("");
   };
 
   const handleKeyPressInputSearchBar = (e) => {
+  // Redirect to the search page (Enter key is pressed while the pointer is on the searchBar)
     if (e.keyCode === 13) {
       const encoded = encodeURI(searchInput);
       navigate(`/search/moviesTv?str=${encoded}`);
@@ -120,7 +93,7 @@ const handleCloseNavMenu = () => {
           <Box sx={{ flexGrow: 1, display: { xs: "flex", md: "none" } }}>
             <IconButton
               size="large"
-              aria-label="account of current user"
+              aria-label="menu-burger"
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
@@ -192,9 +165,9 @@ const handleCloseNavMenu = () => {
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open settings">
               <Link to={`/userFavorites`}>
-                {dataTable[USER_IMAGE].data.length > 0? 
-                <Avatar alt="Remy Sharp" src={dataTable[USER_IMAGE].data} sx={{ bgcolor: "#27265B" }}> </Avatar>
-                :<Avatar alt="Remy Sharp" sx={{ bgcolor: "#27265B" }}> <PersonIcon/></Avatar>
+              {sectionData[USER_IMAGE].data.length > 0? 
+                <Avatar alt="userImage" src={sectionData[USER_IMAGE].data} sx={{ bgcolor: "#595858" }}> </Avatar>
+                :<Avatar alt="userImage" sx={{ bgcolor: "#595858" }}> <PersonIcon/></Avatar>
               }
               </Link>
             </Tooltip>
