@@ -8,4 +8,3 @@ export const oneGenre = (genres,item)=> {
   let textArray = text.split("").slice(0,280).join("")
   return textArray + "..."
 }
-

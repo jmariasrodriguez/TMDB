@@ -15,6 +15,7 @@ export const SINGLE_SHOW_VIEW_TITLES = {
 export const TV_SERIES ="tvSeries"
 export const UPCOMING ="upcoming"
 export const MOVIES ="movies"
+export const CAROUSEL_SHOWS ="carouselShows"
 export const TAB_LABELS="tabLabels"
 export const SINGLE_SHOW = "singleShow"
 export const MY_FAVORITES = "favorites"

@@ -16,7 +16,7 @@ const SectionList = ({ data }) => {
   const matchTv = useMatch('/tv')
   const matchMovies = useMatch('/movies')
   const dispatch = useDispatch();
-  const dataTable ={
+  const sectionData ={
     [TAB_LABELS]: useSelector((state) => state[TAB_LABELS])
   }
   let searchValue = useLocation().search.split("=")[1]
@@ -24,13 +24,15 @@ const SectionList = ({ data }) => {
   const [totalPages, setTotalPages] = useState(10)
   
   useEffect(() => {
+    //Set the total number of pages to see in the pagination
     if (matchTv){  
       axios
         .get(
-          `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
+          `${API_URL.beginningPath}${sectionData[TAB_LABELS].title}/${sectionData[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
         )
         .then((moviesArray) => {
           setTotalPages(moviesArray.data.total_pages)
+          
         })
         .catch((err) => {
           setTvFail(err.message || "Sorry, something went wrong.");
@@ -38,7 +40,7 @@ const SectionList = ({ data }) => {
       }else if (matchMovies){
           axios
             .get(
-              `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
+              `${API_URL.beginningPath}${sectionData[TAB_LABELS].title}/${sectionData[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
             )
             .then((moviesArray) => {
               setTotalPages(moviesArray.data.total_pages)
@@ -62,11 +64,12 @@ const SectionList = ({ data }) => {
   
 
   const handleChange = (event, value)=>{
+    //Pagination change of page
     if (matchTv){  
       dispatch(onSetTv());
       axios
         .get(
-          `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${event.target.textContent}`
+          `${API_URL.beginningPath}${sectionData[TAB_LABELS].title}/${sectionData[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${event.target.textContent}`
         )
         .then((moviesArray) => {
           dispatch(setTvSuccess(moviesArray.data.results));
@@ -78,7 +81,7 @@ const SectionList = ({ data }) => {
         dispatch(onSetMovies());
           axios
             .get(
-              `${API_URL.beginningPath}${dataTable[TAB_LABELS].title}/${dataTable[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${event.target.textContent}`
+              `${API_URL.beginningPath}${sectionData[TAB_LABELS].title}/${sectionData[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=${event.target.textContent}`
             )
             .then((moviesArray) => {
               dispatch(setMoviesSuccess(moviesArray.data.results));
@@ -103,15 +106,16 @@ const SectionList = ({ data }) => {
       }
     }
 
-
   return match? (
       <ContainerSectionList container spacing={3}>
         {data?.map((item, index) => {
-          return (
-            <Grid item key={item.id}>
-              <CardItem key={item.id} item={item} index={index}  />
-            </Grid>
-          );
+          if(item.genre_ids.length > 0){
+            return (
+              <Grid item key={item.id}>
+                <CardItem key={item.id} item={item} index={index}  />
+              </Grid>
+            );
+          }
         })}
       </ContainerSectionList>
   ): 
@@ -119,11 +123,13 @@ const SectionList = ({ data }) => {
     <Box>
     <ContainerSectionListOnePage container spacing={3}>
       {data?.map((item, index) => {
-        return (
-          <Grid item key={item.id}>
-            <CardItem key={item.id} item={item} index={index}  />
-          </Grid>
-        );
+        if(item.genre_ids.length > 0){
+          return (
+            <Grid item key={item.id}>
+              <CardItem key={item.id} item={item} index={index}  />
+            </Grid>
+          );
+        }
       })}
     </ContainerSectionListOnePage>
     <Box sx={{ margin:"auto", p:"24px", display:"flex", justifyContent:"center"}}>

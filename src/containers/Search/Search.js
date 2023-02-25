@@ -9,14 +9,15 @@ import { API_URL, MAIN_TITLE, MOVIES } from '../../data/constants';
 import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies';
 
 const SearchView = () => {
-    let searchValue = useLocation().search.split("=")[1]
+  let searchValue = useLocation().search.split("=")[1]
 
  const sectionData = {
-        [MOVIES]: useSelector((state) => state[MOVIES]),
-      };
+  [MOVIES]: useSelector((state) => state[MOVIES]),
+ };
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //Search the value in the api and set it on a state
     dispatch(onSetMovies());
     axios
       .get(
@@ -36,8 +37,8 @@ const SearchView = () => {
      <SectionMainTitle mainTitle={MAIN_TITLE.searchView} />
      <SectionPreview
           {...sectionData[MOVIES]}
-          />
-          </Box>
+      />
+    </Box>
   )
 }
 

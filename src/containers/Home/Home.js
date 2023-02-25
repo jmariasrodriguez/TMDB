@@ -1,46 +1,45 @@
 import React from "react";
 import SectionPreview from "../../components/Section-Preview";
-import { TABS, MAIN_TITLE, PREVIEW_SECTION_TITLE, API_URL } from "../../data/constants";
+import { TABS, MAIN_TITLE, PREVIEW_SECTION_TITLE, API_URL, CAROUSEL_SHOWS } from "../../data/constants";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  onSetUpcoming,
-  setUpcomingFail,
-  setUpcomingSuccess,
-} from "../../state/upcoming";
-import {
-  onSetMovies,
-  setMoviesFail,
-  setMoviesSuccess,
-} from "../../state/movies";
+import {onSetUpcoming, setUpcomingFail, setUpcomingSuccess,} from "../../state/upcoming";
+import {onSetMovies, setMoviesFail, setMoviesSuccess,} from "../../state/movies";
 import { onSetTv, setTvFail, setTvSuccess } from "../../state/tv";
 import SectionMainTitle from "../../components/Section-MainTitle";
 import SectionCarousel from "../../components/Carousel";
 import { TV_SERIES, UPCOMING, MOVIES } from "../../data/constants";
 import { Box } from "@mui/material";
+import { onSetCarouselShows, setCarouselShowsFail, setCarouselShowsSuccess } from "../../state/carouselShows";
 
 const Home = () => {
   const sectionData = {
     [UPCOMING]: useSelector((state) => state[UPCOMING]),
     [MOVIES]: useSelector((state) => state[MOVIES]),
     [TV_SERIES]: useSelector((state) => state[TV_SERIES]),
+    [CAROUSEL_SHOWS]: useSelector((state) => state[CAROUSEL_SHOWS]),
   };
   
-  const [carouselShows, setCarouselShows] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    //get Carousel movies
+    dispatch(onSetCarouselShows());
     axios
       .get(
         `${API_URL.beginningPath}discover/movie?api_key=${process.env.REACT_APP_API_KEY_TMDB}`
       )
       .then((moviesArray) => {
-        setCarouselShows(moviesArray.data.results);
-      });
-  }, []);
+        dispatch(setCarouselShowsSuccess(moviesArray.data.results));
+      })
+      .catch((err) => {
+        dispatch(setCarouselShowsFail(err.message || "Sorry, something went wrong."));
+    });   
+  }, [])
   
   useEffect(() => {
+    //get Upcoming movies
     dispatch(onSetUpcoming());
     axios
     .get(
@@ -55,6 +54,7 @@ const Home = () => {
   }, [])
   
   useEffect(() => {
+    //get Movies
     dispatch(onSetMovies());
     axios
     .get(
@@ -69,6 +69,7 @@ const Home = () => {
   }, [])
 
   useEffect(() => {
+    //get TV Series
     dispatch(onSetTv());
     axios
     .get(
@@ -84,8 +85,8 @@ const Home = () => {
 
   return (
     <Box>
-      <SectionCarousel items={carouselShows}  />
-      <SectionMainTitle mainTitle={MAIN_TITLE.homeView} />
+      <SectionCarousel {...sectionData[CAROUSEL_SHOWS]}/>
+      <SectionMainTitle mainTitle={MAIN_TITLE.homeView}/>
       {Object.keys(PREVIEW_SECTION_TITLE).map((section)=>
           <SectionPreview
           key={section}

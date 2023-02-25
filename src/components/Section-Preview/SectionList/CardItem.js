@@ -4,12 +4,13 @@ import Typography from "@mui/joy/Typography";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import { useNavigate } from "react-router-dom";
-import { CardActionArea } from "@mui/material";
+import { CardActionArea, Popover } from "@mui/material";
 import { ContainerCard, ContentCard, BoxRaiting } from "../styleSectionPreview";
 import {oneGenre } from "../../../utils";
 import {getParsedITem} from "../../../utils/formatters"
 import { useSelector } from "react-redux";
 import { MOVIES_GENRES, TV_SERIES_GENRES } from "../../../data/constants";
+
 
 
 export default function CardItem({ item}) {
@@ -29,13 +30,13 @@ export default function CardItem({ item}) {
 
   const navigate = useNavigate();
 
-  const handleClick = () => {
-    item.first_air_date
-      ? navigate(`/tv/${item.id}`)
-      : navigate(`/movie/${item.id}`);
-      window.location.reload();
-  };
-  
+  const handleClick = (event) => {
+      item.first_air_date
+        ? navigate(`/tv/${item.id}`)
+        : navigate(`/movie/${item.id}`);
+        window.location.reload();
+  }
+
   return (
     <ContainerCard value={item.id}>
       <CardCover>
@@ -62,7 +63,7 @@ export default function CardItem({ item}) {
             />
           </BoxRaiting>
           <Typography textColor="#f9f9f9" fontSize="sm" paddingTop={"4px"}>
-            {movieTv.year}, {item.genre_ids && sectionData[MOVIES_GENRES].data.length > 0 && sectionData[MOVIES_GENRES].data.length > 0 ? oneGenre(genre.data, item) : null}
+            {movieTv.year}, {item.genre_ids && sectionData[MOVIES_GENRES].data.length > 0 && sectionData[TV_SERIES_GENRES].data.length > 0 ? oneGenre(genre.data, item) : null}
           </Typography>
           <Typography level="h6" fontSize="md" textColor="#f9f9f9" marginTop={1}>
             {movieTv.name}
