@@ -16,6 +16,7 @@ export default createReducer(initialState,{
     [onSetFavorites.type]: (state, action)=>{return{
         ...state,
         loading:true,
+        error:null,
     }},
     [setFavoritesFail.type]:(state, action)=>{return{
         ...state,
@@ -28,4 +29,3 @@ export default createReducer(initialState,{
         loading:false
     }},
 })
-

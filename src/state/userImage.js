@@ -15,7 +15,7 @@ const initialState = {
 export default createReducer(initialState,{
     [onSetUserImage.type]: (state, action)=>{return{
         ...state,
-        loading:true,
+        loading:true,  
     }},
     [setUserImageFail.type]:(state, action)=>{return{
         ...state,

@@ -16,7 +16,7 @@ const handleClick = () => {
   };
 
   return (
-    <Card sx={{ height: "300px", width: "150px", padding: "0px",backgroundColor: "#22214F" }}>
+    <Card sx={{ height: "300px",width:"150px",m:"10px 4px 10px 10px",backgroundColor: "#22214F" }}>
         <CardActionArea sx={{position:"relative", height:"100%"}} onClick={handleClick}>
       <CardMedia
         component="img"
@@ -35,10 +35,9 @@ const handleClick = () => {
       >
           <Typography
           variant="subtitle2"
-          textColor="#f9f9f9"
           fontWeight="600"
           >
-            {item.media_type === "tv"? item.original_name : item.title}
+            {item.media_type === "tv"? item.name : item.title}
           </Typography>
       </CardContent>
       </CardActionArea>

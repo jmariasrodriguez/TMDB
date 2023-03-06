@@ -29,16 +29,18 @@ const SectionUserImage = () => {
 
   const onSelectFile = (event) => {
     let imageSelected = event.target.files[0];
-    let image = URL.createObjectURL(imageSelected);
-    let oldData = JSON.parse(localStorage.getItem("userImage"));
-    oldData.splice(0, 1, image);
-    localStorage.setItem("userImage", JSON.stringify(oldData));
-    dispatch(onSetUserImage());
-    dispatch(setUserImageSuccess(image));
+    const reader = new FileReader();
+    reader.readAsDataURL(imageSelected);
+
+    reader.addEventListener('load', () => {
+      localStorage.setItem('userImage', reader.result);
+      dispatch(onSetUserImage())
+      dispatch(setUserImageSuccess(reader.result))
+    })
   };
   
   const onDelete = () => {
-    localStorage.setItem("userImage", "[]");
+    localStorage.setItem("userImage", []);
     dispatch(onSetUserImage());
     dispatch(setUserImageSuccess([]));
   };
@@ -59,7 +61,7 @@ const SectionUserImage = () => {
   };
 
   return (
-    <Box display="flex" flexDirection="row" margin="8px" alignItems="center">
+    <Box display="flex" flexDirection="row" padding="8px" alignItems="center">
       <IconButton onClick={handleOpen}>
         <Badge overlap="circular" anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
           badgeContent={<AddPhotoIcon/>}>

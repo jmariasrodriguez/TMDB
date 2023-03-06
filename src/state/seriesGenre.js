@@ -17,6 +17,7 @@ export default createReducer(initialState,{
         return{
         ...state,
         loading: true,
+        error:null,
     }},
     [setSeriesGenreFail.type]:(state, action) =>  {
         return{

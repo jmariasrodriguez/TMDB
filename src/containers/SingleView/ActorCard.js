@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 
 export default function ActorCard({ item }) {
   return (
-    <Card sx={{ height: "300px", width: "150px", padding: "0px",backgroundColor: "#22214F"}}>
+    <Card sx={{ height: "300px", width: "150px",m:"10px 4px 10px 10px",backgroundColor: "#22214F"}}>
       <CardMedia
         component="img"
         image={`https://www.themoviedb.org/t/p/original${item.profile_path}`}
@@ -23,7 +23,6 @@ export default function ActorCard({ item }) {
         >
           <Typography
             variant="subtitle2"
-            textColor="#f9f9f9"
             fontWeight="600"
             >
             {item.original_name}

@@ -11,19 +11,19 @@ const SectionCast = ({ data, loading, error,Title }) => {
 
   return (
     <ContainerSectionPreview>
-      <Typography variant="h4" sx={{ color: "#f9f9f9", margin: "4px", marginTop:"16px"}}>
+      <Typography variant="h4" sx={{color: "#f9f9f9", margin: "4px", marginTop:"16px"}}>
         {Title}
       </Typography>
-      {loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
+      {loading && <Box sx={{display: 'flex'}}><CircularProgress /></Box>} 
       {error && <Alert variant="filled" severity="error">{error}</Alert>}
-      <ContainerSectionList container spacing={3}>
-        {dataActors.map((item) => {
+      <ContainerSectionList container>
+        {dataActors.length? dataActors.map((item) => {
           return (
-            <Grid item>
-              <ActorCard item={item} />
+            <Grid item key={item.id}>
+              <ActorCard item={item}/>
             </Grid>
           );
-        })}
+        }) : <Grid item><Typography variant="subtitle2" color={"#f9f9f9"} margin= "4px">Sorry, we dont have cast information.</Typography></Grid>}
       </ContainerSectionList>
     </ContainerSectionPreview>
   );

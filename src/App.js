@@ -59,24 +59,25 @@ function App() {
     if (localStorage.getItem("data") == null) {
       localStorage.setItem("data", "[]");
     }
-    dispatch(onSetFavorites());
-    dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
+      dispatch(onSetFavorites());
+      dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
   }, []);
+
 
   useEffect(() => {
     //get the cookie with the user image
     if (localStorage.getItem("userImage") == null) {
-      localStorage.setItem("userImage", "[]");
+      localStorage.setItem("userImage", []);
     }
     dispatch(onSetUserImage());
-    dispatch(setUserImageSuccess(JSON.parse(localStorage.getItem("userImage")))
+    dispatch(setUserImageSuccess(localStorage.getItem("userImage"))
     );
   }, []);
 
   return (
     <>
       <CssBaseline/>
-      <Box container direction="column" justifyContent="center" alignItems="center" sx={{ bgcolor: "#22214F" }}>
+      <Box direction="column" justifyContent="center" alignItems="center" sx={{ bgcolor: "#22214F" }}>
         <Navbar navbarTitles={NAVBAR_TITLES}/>
         <Routes>
           <Route path="/" element={<Home/>}/>

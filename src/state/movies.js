@@ -16,6 +16,7 @@ export default createReducer(initialState,{
     [onSetMovies.type]: (state, action)=>{return{
         ...state,
         loading:true,
+        error:null,
     }},
     [setMoviesFail.type]:(state, action)=>{return{
         ...state,

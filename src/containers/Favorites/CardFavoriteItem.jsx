@@ -76,7 +76,7 @@ export default function CardFavoriteItem({ item}) {
                 variant="body1"
                 sx={{marginRight: "20%", marginTop:"1%", color:"#595858"}}
               >
-                {item.overview}
+                {item.overview? item.overview : `Sorry, we do not have an overview of this ${movieTv.showType}.`}
               </Typography>
           </TextBox>
     </Box>

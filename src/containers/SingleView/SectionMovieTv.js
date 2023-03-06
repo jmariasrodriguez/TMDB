@@ -45,7 +45,7 @@ const SectionMovieTv = () => {
 
 return (
   <>
-      <ContainerCard container>
+      <ContainerCard>
         <CardCover sx={{ opacity: "0.4" }}>
           <img
             src={`https://www.themoviedb.org/t/p/original/${dataTable[SINGLE_SHOW].backdrop_path}`}
@@ -69,9 +69,9 @@ return (
               </Typography>
               <BoxRaiting
                 sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  margin: "16px 4px 4px 0px",
+                  display:"flex",
+                  flexDirection:"row",
+                  margin:"16px 4px 4px 0px",
                 }}
               >
                 <Rating
@@ -80,26 +80,24 @@ return (
                   value={movieTv.value}
                   readOnly
                   precision={0.5}
-                  emptyIcon={<StarIcon style={{ opacity: 0.3, color: "#f9f9f9" }} fontSize="inherit"/>}
+                  emptyIcon={<StarIcon style={{ opacity: 0.3, color:"#f9f9f9"}} fontSize="inherit"/>}
                 ></Rating>
-                <Typography sx={{ ml: 1, color: "#f9f9f9", fontWeight: "bold" }}>
+                <Typography sx={{ ml: 1, color:"#f9f9f9", fontWeight:"bold"}}>
                   {RATINGS_TEXT[movieTv.value]}
                 </Typography>{" "}
-                <IconButton aria-label="favorite" color="primary" onClick={handleOnclick} disabled={isClicked} ><FavoriteIcon sx={{ marginLeft: "16px" }}/></IconButton> 
+                <IconButton aria-label="favorite" color="primary" onClick={handleOnclick} disabled={isClicked} ><FavoriteIcon sx={{ marginLeft:"16px"}}/></IconButton> 
               </BoxRaiting>
               <Typography
                 variant="h6"
-                color="#f9f9f9"
-                sx={{ margin: "16px 4px 4px 0px" }}
+                sx={{ margin:"16px 4px 4px 0px", color:"#f9f9f9"}}
               >
                 OVERVIEW
               </Typography>
               <Typography
                 variant="body1"
-                color="#f9f9f9"
-                sx={{ marginRight: "10%"}}
+                sx={{ marginRight:"10%", color:"#f9f9f9"}}
               >
-                {dataTable[SINGLE_SHOW].overview }  
+                {dataTable[SINGLE_SHOW].overview? dataTable[SINGLE_SHOW].overview : `Sorry, we do not have an overview of this ${movieTv.showType}.`}  
               </Typography>
           </TextBox>
         </BoxCardContent>

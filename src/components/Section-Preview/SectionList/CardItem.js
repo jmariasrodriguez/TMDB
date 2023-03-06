@@ -1,11 +1,9 @@
-import * as React from "react";
-import CardCover from "@mui/joy/CardCover";
 import Typography from "@mui/joy/Typography";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
-import { useNavigate } from "react-router-dom";
-import { CardActionArea, Popover } from "@mui/material";
-import { ContainerCard, ContentCard, BoxRaiting } from "../styleSectionPreview";
+import { Link } from "react-router-dom";
+import { Box } from "@mui/material";
+import { ContentCard, BoxRaiting } from "../styleSectionPreview";
 import {oneGenre } from "../../../utils";
 import {getParsedITem} from "../../../utils/formatters"
 import { useSelector } from "react-redux";
@@ -13,7 +11,7 @@ import { MOVIES_GENRES, TV_SERIES_GENRES } from "../../../data/constants";
 
 
 
-export default function CardItem({ item}) {
+export default function CardItem({item}) {
   const movieTv = getParsedITem(item);
 
   const sectionData = {
@@ -28,24 +26,16 @@ export default function CardItem({ item}) {
     genre = sectionData[TV_SERIES_GENRES]
   }
 
-  const navigate = useNavigate();
-
-  const handleClick = (event) => {
-      item.first_air_date
-        ? navigate(`/tv/${item.id}`)
-        : navigate(`/movie/${item.id}`);
-        window.location.reload();
-  }
+  const redirect = item.first_air_date? `/tv/${item.id}` : `/movie/${item.id}`
 
   return (
-    <ContainerCard value={item.id}>
-      <CardCover>
-        <img
-          srcSet={`https://www.themoviedb.org/t/p/original/${item.poster_path}`}
-          alt={movieTv.name}
-        />
-      </CardCover>
-      <CardActionArea sx={{position:"relative", height:"100%"}} onClick={handleClick}>
+    <Link to={redirect}>
+    <Box sx={{ display:"flex", flexDirection:"row", alignItems:"end", height: "340px",
+    width: "180px",
+    backgroundImage:`url(https://www.themoviedb.org/t/p/original/${item.poster_path})`, backgroundSize:"180px 340px" }} value={item.id}>
+
+      <Box sx={{position:"relative", minWidth:"180px"}}>
+
         <ContentCard value={item.id}>
           <BoxRaiting>
             <Rating
@@ -60,16 +50,17 @@ export default function CardItem({ item}) {
                   fontSize="inherit"
                 />
               }
-            />
+              />
           </BoxRaiting>
-          <Typography textColor="#f9f9f9" fontSize="sm" paddingTop={"4px"}>
+          <Typography textColor="#f9f9f9" fontSize="sm" marginTop={"4px"} marginLeft={"4px"}>
             {movieTv.year}, {item.genre_ids && sectionData[MOVIES_GENRES].data.length > 0 && sectionData[TV_SERIES_GENRES].data.length > 0 ? oneGenre(genre.data, item) : null}
           </Typography>
-          <Typography level="h6" fontSize="md" textColor="#f9f9f9" marginTop={1}>
-            {movieTv.name}
+          <Typography level="h6" fontSize="md" textColor="#f9f9f9" marginTop={"4px"} marginLeft={"4px"}>
+            {movieTv.name && movieTv.name.length > 42? movieTv.name.substring(0,37) + " .." : movieTv.name}
           </Typography>
         </ContentCard>
-      </CardActionArea>
-    </ContainerCard>
+        </Box>
+        </Box>
+        </Link>
   );
 }

@@ -14,7 +14,8 @@ const initialState = {
 export default createReducer(initialState,{
     [onSetTv.type]:(state, action) => { return {
         ...state,
-        loading: true
+        loading:true,
+        error:null,
     }},
     [setTvFail.type]: (state, action)=>{return{
         ...state,

@@ -16,6 +16,7 @@ export default createReducer(initialState,{
     [onSetMoviesGenre.type]:(state, action) =>  {return{
         ...state,
         loading: true,
+        error:null,
     }},
     [setMoviesGenresFail.type]:(state, action) =>  {return{
         ...state,

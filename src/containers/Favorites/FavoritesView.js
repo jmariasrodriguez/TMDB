@@ -11,7 +11,7 @@ import SectionUserImage from "./SectionUserImage";
 
 const FavoritesView = () => {
   const sectionData = {[MY_FAVORITES]: useSelector((state) => state[MY_FAVORITES])};
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState("0");
   const [data, setData] = useState([]);
   const series = sectionData[MY_FAVORITES].data.filter((item) => item.first_air_date);
   const movies = sectionData[MY_FAVORITES].data.filter((item) => item.release_date);
@@ -23,7 +23,7 @@ const FavoritesView = () => {
 
   const handleChange = (event, newValue) => {
     //Set the data that will be passed to the SectionListFavs
-    setValue(newValue);
+    setValue(newValue.toString());
     if (event.target.innerText === "MOVIES") {
       setData(movies);
     } else if (event.target.innerText === "TV SERIES") {
@@ -44,7 +44,7 @@ const FavoritesView = () => {
               <ContainerTabsTitles>
                 <TabList onChange={handleChange} aria-label="lab API tabs">
                   {TABS_FAVORITES.favorites?.map((tab, index) => {
-                    return (<Tab key={index} label={tab.label} value={index} sx={{ color: "#f9f9f9", typography: "body1" }}/>);
+                    return (<Tab key={index} label={tab.label} value={index.toString()} sx={{ color: "#f9f9f9", Typography: "body1" }}/>);
                   })}
                 </TabList>
               </ContainerTabsTitles>
