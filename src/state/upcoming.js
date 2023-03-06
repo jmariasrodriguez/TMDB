@@ -14,7 +14,8 @@ const initialState = {
 export default createReducer(initialState, {
     [onSetUpcoming.type]:(state, action) =>  {return{
         ...state,
-        loading: true,
+        loading:true,
+        error:null,
     }},
     [setUpcomingFail.type]:(state, action) =>  {return{
         ...state,

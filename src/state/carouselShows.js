@@ -16,6 +16,7 @@ export default createReducer(initialState,{
     [onSetCarouselShows.type]: (state, action)=>{return{
         ...state,
         loading:true,
+        error:null,
     }},
     [setCarouselShowsFail.type]:(state, action)=>{return{
         ...state,

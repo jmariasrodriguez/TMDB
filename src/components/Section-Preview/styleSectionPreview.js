@@ -1,6 +1,7 @@
 import { Grid } from "@mui/material";
 import { Box } from "@mui/system";
 import { styled } from "@mui/system";
+//import Card from "@mui/material/Card";
 import Card from "@mui/joy/Card";
 import CardContent from "@mui/joy/CardContent";
 
@@ -10,10 +11,8 @@ export const ContainerSectionPreview = styled(Box)(({ theme }) => ({
   flexDirection: "column",
   margin: "auto",
   maxWidth: "1200px",
-  marginTop: "36px",
-  marginBottom: "36px",
-  paddingTop: "16px",
-  paddingBottom: "16px",
+  paddingTop: "36px",
+  paddingBottom: "36px",
   backgroundColor: "#27265B",
   [theme.breakpoints.down('sm')]: {
     marginLeft:"8px",
@@ -46,6 +45,7 @@ export const ContainerSectionList = styled(Grid)(({ theme }) => ({
   alignItems: "flex-start",
   flexWrap: "nowrap",
   overflow: "auto",
+  paddingTop:"30px",
 
   "&::-webkit-scrollbar": {
     width: "20px",
@@ -77,6 +77,7 @@ export const ContainerSectionListOnePage = styled(Grid)(({ theme }) => ({
   flexDirection: "row",
   justifyContent: "flex-start",
   alignItems: "flex-start",
+  paddingTop:"30px",
 
   "&::-webkit-scrollbar": {
     width: "20px",
@@ -99,12 +100,13 @@ export const ContainerSectionListOnePage = styled(Grid)(({ theme }) => ({
 export const ContainerCard = styled(Card)(({ theme }) => ({
   height: "340px",
   width: "180px",
-  padding: "0px",
-  marginTop: "30px",
+  //m:"10px 4px 10px 10px"
+  //marginTop: "30px",
 }));
 
 export const ContentCard = styled(CardContent)(({ theme }) => ({
   position:"absolute",
+  height:"107px",
   width:"100%",
   bottom:"0",
   backgroundColor: "rgba(0,0,0,0.7)",
@@ -113,6 +115,7 @@ export const ContentCard = styled(CardContent)(({ theme }) => ({
 export const BoxRaiting = styled(Box)(({ theme }) => ({
   display: "flex",
   alignItems: "center",
-  paddingTop: "4px",
-  paddingBottom: "4px",
+  marginTop: "4px",
+  marginBottom: "4px",
+  marginLeft:"4px",
 }));

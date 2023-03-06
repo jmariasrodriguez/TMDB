@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Tab from "@mui/material/Tab";
 import TabContext from "@mui/lab/TabContext";
@@ -16,24 +16,26 @@ import { API_URL } from "../../../data/constants";
 import { tabTitle,tabSubtitle } from "../../../state/tabTitle";
 
 export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
-  const [value, setValue] = useState(0);
   const dispatch = useDispatch();
+  const [value, setValue] = useState("0");
+  useEffect(() => {
+    if (previewSectionTitle === "Movies"){
+      dispatch(tabTitle("movie"));
+      dispatch(tabSubtitle("now_playing"));
+    }else{
+      dispatch(tabTitle("tv"));
+      dispatch(tabSubtitle("on_the_air"));
+    }
+  }, [])
+  
 
-  if (previewSectionTitle === "Movies"){
-    dispatch(tabTitle("movie"));
-    dispatch(tabSubtitle("now_playing"));
-  }else{
-    dispatch(tabTitle("tv"));
-    dispatch(tabSubtitle("on_the_air"));
-  }
-
+    
   const handleChange = (event, newValue) => {
     //Prepare the label and title label to be set as a state, that will be use to create the URL of the API in SectionPreview
-    setValue(newValue);
+    setValue(newValue.toString());
     let titleLabel = previewSectionTitle;
     if (titleLabel === "Movies") {
       titleLabel = "movie";
-      
     }
     if (titleLabel === "TV Series") {
       titleLabel = "tv";
@@ -43,7 +45,6 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
     if (tabTitleLabel === "in_theaters") {
       tabTitleLabel = "now_playing";
     }
-
     if (titleLabel === "movie") {
       dispatch(onSetMovies());
       dispatch(tabTitle(titleLabel));
@@ -87,7 +88,7 @@ export default function TabsSectionPreview({ tabs, previewSectionTitle }) {
                   return (<Tab
                     key={index}
                     label={tab.label}
-                    value={index}
+                    value={index.toString()}
                     sx={{ color: "#f9f9f9", typography: "body1" }}
                   />)
                 }

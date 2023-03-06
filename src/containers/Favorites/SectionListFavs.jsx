@@ -44,12 +44,12 @@ const SectionListFavs = ({ data}) => {
         }
   return (
     <Box>
-    <ContainerSectionListOnePage  spacing={0}>
+    <ContainerSectionListOnePage>
       {data.length === 0 && (<Typography variant="body1" sx={{color:"#f9f9f9", mt:"16px"}}>There are no items to show</Typography>)}
       {data?.map((item, index) => {
         return (
-          <Grid item>
-            <CardFavoriteItem key={index} item={item} index={index}/>
+          <Grid item key={item.id}>
+            <CardFavoriteItem item={item}/>
           </Grid>
         );
       })}

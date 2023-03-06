@@ -24,31 +24,33 @@ const SectionList = ({ data }) => {
   const [totalPages, setTotalPages] = useState(10)
   
   useEffect(() => {
-    //Set the total number of pages to see in the pagination
+    //Set the total number of pages to see in the pagination 
     if (matchTv){  
+      //Tv view
       axios
         .get(
           `${API_URL.beginningPath}${sectionData[TAB_LABELS].title}/${sectionData[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
         )
         .then((moviesArray) => {
-          setTotalPages(moviesArray.data.total_pages)
-          
+          moviesArray.data.total_pages > 50? setTotalPages(50) : setTotalPages(moviesArray.data.total_pages)
         })
         .catch((err) => {
           setTvFail(err.message || "Sorry, something went wrong.");
         });
       }else if (matchMovies){
+        //Movies view
           axios
             .get(
               `${API_URL.beginningPath}${sectionData[TAB_LABELS].title}/${sectionData[TAB_LABELS].subtitle}?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&page=1`
             )
             .then((moviesArray) => {
-              setTotalPages(moviesArray.data.total_pages)
+              moviesArray.data.total_pages > 50? setTotalPages(50) : setTotalPages(moviesArray.data.total_pages)
             })
             .catch((err) => {
               setMoviesFail(err.message || "Sorry, something went wrong.");
             })
       }else{
+        //Search view
         axios
           .get(
             `${API_URL.beginningPath}search/multi?api_key=${process.env.REACT_APP_API_KEY_TMDB}&${API_URL.language}&query=${searchValue}&page=1&include_adult=false`
@@ -65,7 +67,8 @@ const SectionList = ({ data }) => {
 
   const handleChange = (event, value)=>{
     //Pagination change of page
-    if (matchTv){  
+    if (matchTv){
+      //Tv view  
       dispatch(onSetTv());
       axios
         .get(
@@ -78,6 +81,7 @@ const SectionList = ({ data }) => {
           setTvFail(err.message || "Sorry, something went wrong.");
         });
       }else if (matchMovies){
+        //Movies view
         dispatch(onSetMovies());
           axios
             .get(
@@ -107,29 +111,31 @@ const SectionList = ({ data }) => {
     }
 
   return match? (
-      <ContainerSectionList container spacing={3}>
+      <ContainerSectionList container>
         {data?.map((item, index) => {
-          if(item.genre_ids.length > 0){
+          if(item.genre_ids && item.genre_ids.length > 0){
             return (
-              <Grid item key={item.id}>
-                <CardItem key={item.id} item={item} index={index}  />
+              <Grid item  sx={{m:"0px 24px 8px 0px"}} key={item.id}>
+                <CardItem item={item}/>
               </Grid>
             );
-          }
+          }else{
+          return null}
         })}
       </ContainerSectionList>
   ): 
   ( 
     <Box>
-    <ContainerSectionListOnePage container spacing={3}>
+    <ContainerSectionListOnePage container>
       {data?.map((item, index) => {
-        if(item.genre_ids.length > 0){
+        if(item.genre_ids && item.genre_ids.length > 0 ){
           return (
-            <Grid item key={item.id}>
-              <CardItem key={item.id} item={item} index={index}  />
+            <Grid sx={{m:"0px 16px 24px 0px"}} item key={item.id}>
+              <CardItem item={item}/>
             </Grid>
           );
-        }
+        }else{
+        return null}
       })}
     </ContainerSectionListOnePage>
     <Box sx={{ margin:"auto", p:"24px", display:"flex", justifyContent:"center"}}>

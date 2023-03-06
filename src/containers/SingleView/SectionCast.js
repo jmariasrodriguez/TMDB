@@ -1,5 +1,6 @@
 import { Alert, Box, CircularProgress, Grid, Typography } from "@mui/material";
 import React from "react";
+import styled from "styled-components";
 import {
   ContainerSectionList,
   ContainerSectionPreview,
@@ -16,14 +17,14 @@ const SectionCast = ({ data, loading, error,Title }) => {
       </Typography>
       {loading && <Box sx={{ display: 'flex' }}><CircularProgress /></Box>} 
       {error && <Alert variant="filled" severity="error">{error}</Alert>}
-      <ContainerSectionList container spacing={3}>
-        {dataActors.map((item) => {
+      <ContainerSectionList container>
+        {dataActors.length? dataActors.map((item) => {
           return (
-            <Grid item>
-              <ActorCard item={item} />
+            <Grid item key={item.id}>
+              <ActorCard item={item}/>
             </Grid>
           );
-        })}
+        }) : <Grid item><Typography variant="subtitle2" color={"#f9f9f9"} margin= "4px">Sorry, we dont have cast information  .</Typography></Grid>}
       </ContainerSectionList>
     </ContainerSectionPreview>
   );

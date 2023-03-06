@@ -22,10 +22,10 @@ const Footer = () => {
   };
 
   return (
-    <ContainerFooter container>
-      <ContainerFooterSections sx={{flexDirection:{xs:"column", sm:"row"}}} container>
-       <Box item>
-        <IconImage item sx={{ maxWidth: "15%" }}>
+    <ContainerFooter>
+      <ContainerFooterSections sx={{flexDirection:{xs:"column", sm:"row"}}}>
+       <Box>
+        <IconImage  sx={{ maxWidth: "15%" }}>
           <SvgIcon
             component={tmdbIcon}
             inheritViewBox
@@ -34,7 +34,7 @@ const Footer = () => {
         </IconImage>
        </Box>
 
-        <Box item>
+        <Box>
           <Typography variant="body2" fontWeight="500" color="#f9f9f9" align="center">
             This product uses the TMDB API but is not endorsed or certify by
             TMDB
@@ -43,12 +43,12 @@ const Footer = () => {
       </ContainerFooterSections>
 
       <ContainerFooterSections>
-        <IconImage item>
+        <IconImage >
           <IconButton onClick={handleClickLinkeIn}>
             <LinkedInIcon sx={{ color: "#0e76a8" }} fontSize="large" />
           </IconButton>
         </IconImage>
-        <IconImage item>
+        <IconImage >
           <IconButton onClick={handleClickGitHub}>
             <GitHubIcon sx={{ color: "#101010" }} fontSize="large" />
           </IconButton>

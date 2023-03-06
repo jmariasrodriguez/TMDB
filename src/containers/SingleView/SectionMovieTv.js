@@ -45,7 +45,7 @@ const SectionMovieTv = () => {
 
 return (
   <>
-      <ContainerCard container>
+      <ContainerCard>
         <CardCover sx={{ opacity: "0.4" }}>
           <img
             src={`https://www.themoviedb.org/t/p/original/${dataTable[SINGLE_SHOW].backdrop_path}`}
@@ -99,7 +99,7 @@ return (
                 color="#f9f9f9"
                 sx={{ marginRight: "10%"}}
               >
-                {dataTable[SINGLE_SHOW].overview }  
+                {dataTable[SINGLE_SHOW].overview? dataTable[SINGLE_SHOW].overview : `Sorry, we do not have an overview of this ${movieTv.showType}.`}  
               </Typography>
           </TextBox>
         </BoxCardContent>

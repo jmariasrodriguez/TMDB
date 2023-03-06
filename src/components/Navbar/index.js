@@ -22,12 +22,12 @@ import Avatar from "@mui/material/Avatar";
  
 function Navbar({ navbarTitles }) {
 
+  const navigate = useNavigate();
+  const [anchorElNav, setAnchorElNav] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
   const sectionData = {
     [USER_IMAGE]: useSelector((state) => state[USER_IMAGE]),
   }
-  const [anchorElNav, setAnchorElNav] = useState(null);
-  const [searchInput, setSearchInput] = useState("");
-  const navigate = useNavigate();
   
   const handleOpenNavMenu = (event) => {
     // In device view open the menu with the tv series and movies buttons

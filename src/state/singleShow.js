@@ -16,6 +16,7 @@ export default createReducer(initialState,{
     [onSetSingleShow]: (state, action) =>{return{
         ...state,
         loading:true,
+        error:null,
     } },
     [setSingleShowFail]: (state,action)=>{return{
         ...state,

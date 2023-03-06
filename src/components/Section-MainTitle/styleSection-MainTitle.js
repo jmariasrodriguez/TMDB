@@ -6,7 +6,3 @@ export const BoxMainTitle = styled(Box)(({ theme }) => ({
   maxWidth: "1200px",
   textAlign: "center",
 }));
-
-export const BoxContainerMainTitle = styled(Box)(({ theme }) => ({
-  
-}));
