@@ -112,7 +112,7 @@ const SectionList = ({ data }) => {
 
   return match? (
       <ContainerSectionList container>
-        {data?.map((item, index) => {
+        {data?.map((item) => {
           if(item.genre_ids && item.genre_ids.length > 0){
             return (
               <Grid item  sx={{m:"0px 24px 8px 0px"}} key={item.id}>
@@ -127,7 +127,7 @@ const SectionList = ({ data }) => {
   ( 
     <Box>
     <ContainerSectionListOnePage container>
-      {data?.map((item, index) => {
+      {data?.map((item) => {
         if(item.genre_ids && item.genre_ids.length > 0 ){
           return (
             <Grid sx={{m:"0px 16px 24px 0px"}} item key={item.id}>

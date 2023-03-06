@@ -54,15 +54,6 @@ function App() {
       });
   }, []);
 
-  // useEffect(() => {
-  //   //get the cookie with the favorites data
-  //   if (localStorage.getItem("data") == null) {
-  //     localStorage.setItem("data", "[]");
-  //   }
-  //   dispatch(onSetFavorites());
-  //   dispatch(setFavoritesSuccess(JSON.parse(localStorage.getItem("data"))));
-  // }, []);
-
   useEffect(() => {
     //get the cookie with the favorites data
     if (localStorage.getItem("data") == null) {

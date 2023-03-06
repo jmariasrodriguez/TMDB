@@ -55,7 +55,7 @@ const SectionListFavs = ({ data}) => {
       })}
     </ContainerSectionListOnePage>
     <Box sx={{ margin:"auto", p:"24px", display:"flex",justifyContent:"center"}}>
-      <Stack  spacing={2}>
+      <Stack spacing={2}>
         <Pagination count={totalPages}  onChange={handleChange} variant="outlined" shape="rounded"  color="primary" /></Stack>
     </Box>
   </Box>)

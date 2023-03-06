@@ -11,7 +11,7 @@ import { MOVIES_GENRES, TV_SERIES_GENRES } from "../../../data/constants";
 
 
 
-export default function CardItem({ item}) {
+export default function CardItem({item}) {
   const movieTv = getParsedITem(item);
 
   const sectionData = {
