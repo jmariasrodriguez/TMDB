@@ -1,19 +1,23 @@
-import { Box } from '@mui/material';
-import axios from 'axios';
-import React, { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { useLocation } from 'react-router-dom'
-import SectionMainTitle from '../../components/Section-MainTitle';
-import SectionPreview from '../../components/Section-Preview';
-import { API_URL, MAIN_TITLE, MOVIES } from '../../data/constants';
-import { onSetMovies, setMoviesFail, setMoviesSuccess } from '../../state/movies';
+import { Box } from "@mui/material";
+import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
+import SectionMainTitle from "../../components/Section-MainTitle";
+import SectionPreview from "../../components/Section-Preview";
+import { API_URL, MAIN_TITLE, MOVIES } from "../../data/constants";
+import {
+  onSetMovies,
+  setMoviesFail,
+  setMoviesSuccess,
+} from "../../state/movies";
 
 const SearchView = () => {
-  let searchValue = useLocation().search.split("=")[1]
+  let searchValue = useLocation().search.split("=")[1];
 
- const sectionData = {
-  [MOVIES]: useSelector((state) => state[MOVIES]),
- };
+  const sectionData = {
+    [MOVIES]: useSelector((state) => state[MOVIES]),
+  };
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,15 +35,18 @@ const SearchView = () => {
       });
   }, []);
 
-
   return (
-    <Box>
-     <SectionMainTitle mainTitle={MAIN_TITLE.searchView} />
-     <SectionPreview
-          {...sectionData[MOVIES]}
-      />
+    <Box
+      sx={{
+        margin: "auto",
+        maxWidth: "1200px",
+        minHeight: "700px",
+      }}
+    >
+      <SectionMainTitle mainTitle={MAIN_TITLE.searchView} />
+      <SectionPreview {...sectionData[MOVIES]} />
     </Box>
-  )
-}
+  );
+};
 
-export default SearchView
+export default SearchView;
