@@ -42,15 +42,19 @@ Page views were previously design in Figma: [https://www.figma.com/file/E7KJxJm0
 
 ### Installation
 
-1. Clone the repo
+1. API to use
+   
+   Get the API Key on the website itself by registering your email: [https://developers.themoviedb.org/3/getting-started/introduction](https://developers.themoviedb.org/3/getting-started/introduction)
+
+2. Clone the repo
    ```sh
    git clone https://github.com/jmariasrodriguez/TMDB.git
    ```
-2. Install NPM packages
+3. Install NPM packages
    ```sh
    npm install
    ```
-3. Run the APP
+4. Run the APP
    ```sh
    npm start
    ```
