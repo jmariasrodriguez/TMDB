@@ -79,4 +79,5 @@ Page views were previously design in Figma: [https://www.figma.com/file/E7KJxJm0
 
 Project Link: [https://github.com/jmariasrodriguez/TMDB.git](https://github.com/jmariasrodriguez/TMDB.git)
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
